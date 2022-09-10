@@ -1,0 +1,55 @@
+# gitignore Next-Frontend
+# ignore the .gitignore
+next-frontend/.gitignore
+
+# dependencies
+next-frontend/node_modules
+next-frontend/.pnp
+next-frontend/.pnp.js
+
+# testing
+next-frontend/coverage
+
+# next.js
+next-frontend/.next/
+next-frontend/out/
+
+# production
+next-frontend/build
+
+# misc
+next-frontend/.DS_Store
+next-frontend/*.pem
+
+# debug
+next-frontend/npm-debug.log*
+next-frontend/yarn-debug.log*
+next-frontend/yarn-error.log*
+next-frontend/.pnpm-debug.log*
+
+# local env files
+next-frontend/.env*.local
+
+# vercel
+next-frontend/.vercel
+
+# typescript
+next-frontend/*.tsbuildinfo
+next-frontend/next-env.d.ts
+
+
+################## gitignore Sanity-backend #################
+sanity-backend/.npmignore
+
+# Logs
+sanity-backend/logs
+sanity-backend/*.log
+
+# Coverage directory used by tools like istanbul
+sanity-backend/coverage
+
+# Dependency directories
+sanity-backend/node_modules
+
+# Compiled sanity studio
+sanity-backend/dist
