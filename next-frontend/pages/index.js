@@ -1,11 +1,15 @@
+// Next js compenents
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import PortableText from "react-portable-text";
 import Script from "next/script";
 import Link from "next/link";
-import { createClient } from "next-sanity";
 import { useEffect } from "react";
+// CSS for Home page
+import styles from "../styles/Home.module.css";
+
+// Sanity associated modules
+import PortableText from "react-portable-text";
+import { createClient } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
 
 export default function Home({ blog }) {
@@ -76,7 +80,7 @@ export default function Home({ blog }) {
           href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Raleway:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
-
+{/* social media icons from here. */}
         <link
           href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
           rel="stylesheet"
@@ -105,6 +109,7 @@ export default function Home({ blog }) {
       <div id="main" className="relative">
         <div className="w-full z-50 top-0 py-3 sm:py-5  absolute">
           <div className="container flex items-center justify-between">
+{/*  ========= Nav Bar logo ========= */}
             <div>
               <a href="/">
                 <img
@@ -114,73 +119,89 @@ export default function Home({ blog }) {
                 />
               </a>
             </div>
+{/* ************* Nav bar *************** */}
             <div className="hidden lg:block">
               <ul className="flex items-center">
                 <li className="group pl-6">
-                  <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
-                    About
-                  </span>
+                  {/* Directed to about */}
+                  <a href="#about">
+                    <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
+                      About
+                    </span>
+                  </a>
+                  <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
+                </li>
+
+                <li className="group pl-6">
+                  <a href="#services">
+                    <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
+                      Services
+                    </span>
+                  </a>
+                  <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
+                </li>
+
+                <li className="group pl-6">
+                  <a href="#portfolio">
+                    <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
+                      Portfolio
+                    </span>
+                  </a>
 
                   <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
                 </li>
 
                 <li className="group pl-6">
-                  <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
-                    Services
-                  </span>
-
-                  <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
-                </li>
-
-                <li className="group pl-6">
-                  <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
-                    Portfolio
-                  </span>
-
-                  <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
-                </li>
-
-                <li className="group pl-6">
+                  <a href="#clients">
                   <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
                     Clients
                   </span>
-
+                  </a>
                   <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
                 </li>
 
                 <li className="group pl-6">
+                  <a href="#work">
                   <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
                     Work
                   </span>
+                  </a>
 
                   <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
                 </li>
 
                 <li className="group pl-6">
+                  <a href="#statistics">
                   <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
                     Statistics
                   </span>
+                  </a>
 
                   <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
                 </li>
 
                 <li className="group pl-6">
+                  <a href="#blog">
                   <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
                     Blog
                   </span>
+                  </a>
 
                   <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
                 </li>
 
                 <li className="group pl-6">
+                  <a href="#contact">
                   <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
                     Contact
                   </span>
+                  </a>
 
                   <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
                 </li>
               </ul>
             </div>
+{/* Menu button */}
             <div className="block lg:hidden">
               <button>
                 <i className="bx bx-menu text-4xl text-white"></i>
@@ -251,28 +272,31 @@ export default function Home({ blog }) {
           </div>
         </div>
 
+{/* Info section */}
         <div>
+      {/* blur Background image */}
           <div
             className="relative bg-cover bg-center bg-no-repeat py-8"
-            style={{ backgroundImage: "url(publix/assets/img/bg-hero.jpg)" }}
-          >
+            style={{ backgroundImage: "url(/assets/img/bg-hero.jpg)" }}>
             <div className="absolute inset-0 z-20 bg-gradient-to-r from-hero-gradient-from to-hero-gradient-to bg-cover bg-center bg-no-repeat"></div>
 
             <div className="container relative z-30 pt-20 pb-12 sm:pt-56 sm:pb-48 lg:pt-64 lg:pb-48">
               <div className="flex flex-col items-center justify-center lg:flex-row">
                 <div className="rounded-full border-8 border-primary shadow-xl">
+{/* ********* My image ************** */}
                   <img
                     src="/assets//img/blog-author.jpg"
                     className="h-48 rounded-full sm:h-56"
                     alt="author"
                   />
                 </div>
+{/* ********* My Name ********* */}
                 <div className="pt-8 sm:pt-10 lg:pl-8 lg:pt-0">
                   <h1 className="text-center font-header text-4xl text-white sm:text-left sm:text-5xl md:text-6xl">
-                    Hello I'm Christy Smith!
+                    Hello, I'm Shyamal Bhatt!
                   </h1>
-                  <div className="flex flex-col justify-center pt-3 sm:flex-row sm:pt-5 lg:justify-start">
-                    <div className="flex items-center justify-center pl-0 sm:justify-start md:pl-1">
+                  <div className="flex flex-col justify-center pt-3 sm:flex-row sm:pt-5 lg:justify-start ">
+                    <div className="flex items-center justify-center pl-0 sm:justify-start md:pl-1 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300">
                       <p className="font-body text-lg uppercase text-white">
                         Let's connect
                       </p>
@@ -282,19 +306,19 @@ export default function Home({ blog }) {
                     </div>
                     <div className="flex items-center justify-center pt-5 pl-2 sm:justify-start sm:pt-0">
                       <a href="/">
-                        <i className="bx bxl-facebook-square text-2xl text-white hover:text-yellow"></i>
+                        <i className="bx bxl-github text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
                       </a>
                       <a href="/" className="pl-4">
-                        <i className="bx bxl-twitter text-2xl text-white hover:text-yellow"></i>
+                        <i className="bx bxl-twitter text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
                       </a>
                       <a href="/" className="pl-4">
-                        <i className="bx bxl-dribbble text-2xl text-white hover:text-yellow"></i>
+                        <i className="bx bxl-medium text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
                       </a>
                       <a href="/" className="pl-4">
-                        <i className="bx bxl-linkedin text-2xl text-white hover:text-yellow"></i>
+                        <i className="bx bxl-linkedin text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
                       </a>
                       <a href="/" className="pl-4">
-                        <i className="bx bxl-instagram text-2xl text-white hover:text-yellow"></i>
+                        <i className="bx bxl-whatsapp text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
                       </a>
                     </div>
                   </div>
@@ -303,6 +327,7 @@ export default function Home({ blog }) {
             </div>
           </div>
 
+          {/* About Section starts */}
           <div className="bg-grey-50" id="about">
             <div className="container flex flex-col items-center py-16 md:py-20 lg:flex-row">
               <div className="w-full text-center sm:w-3/4 lg:w-3/5 lg:text-left">
@@ -310,7 +335,7 @@ export default function Home({ blog }) {
                   Who am I?
                 </h2>
                 <h4 className="pt-6 font-header text-xl font-medium text-black sm:text-2xl lg:text-3xl">
-                  I'm Christy Smith, a Web Designer & Photographer
+                  I'm Shyamal Bhatt, a Data Analyst & Scientist
                 </h4>
                 <p className="pt-6 font-body leading-relaxed text-grey-20">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
@@ -333,19 +358,19 @@ export default function Home({ blog }) {
                   </div>
                   <div className="flex items-center justify-center pt-5 pl-2 sm:justify-start sm:pt-0">
                     <a href="/">
-                      <i className="bx bxl-facebook-square text-2xl text-primary hover:text-yellow"></i>
+                      <i className="bx bxl-github text-2xl text-primary hover:text-yellow"></i>
                     </a>
                     <a href="/" className="pl-4">
                       <i className="bx bxl-twitter text-2xl text-primary hover:text-yellow"></i>
                     </a>
                     <a href="/" className="pl-4">
-                      <i className="bx bxl-dribbble text-2xl text-primary hover:text-yellow"></i>
+                      <i className="bx bxl-medium text-2xl text-primary hover:text-yellow"></i>
                     </a>
                     <a href="/" className="pl-4">
                       <i className="bx bxl-linkedin text-2xl text-primary hover:text-yellow"></i>
                     </a>
                     <a href="/" className="pl-4">
-                      <i className="bx bxl-instagram text-2xl text-primary hover:text-yellow"></i>
+                      <i className="bx bxl-whatsapp text-2xl text-primary hover:text-yellow"></i>
                     </a>
                   </div>
                 </div>
@@ -418,6 +443,7 @@ export default function Home({ blog }) {
               </div>
             </div>
           </div>
+          {/* About Section ends */}
 
           <div className="container py-16 md:py-20" id="services">
             <h2 className="text-center font-header text-4xl font-semibold uppercase text-primary sm:text-5xl lg:text-6xl">
@@ -924,7 +950,7 @@ export default function Home({ blog }) {
                           style={{
                             backgroundImage: `url(${
                               builder.image(item.image).width(200).url() ||
-                              "/assests/img/post-01.png"
+                              "/assets/img/post-01.png"
                             })`,
                           }}
                           className="group relative h-72 bg-cover bg-center bg-no-repeat sm:h-84 lg:h-64 xl:h-72"
