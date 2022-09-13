@@ -3,12 +3,31 @@ export default {
     type: 'document',
     title: 'Blog',
     fields: [
-      { //Document
-        title: 'Name',
-        name: 'name',
+
+      // Title
+      { 
+        title: 'Title',
+        name: 'title',
         type: 'string'
         
       },
+
+      // Slug
+      {
+        title: 'Slug',
+        name: 'slug',
+        type: 'slug',
+        options: {
+          source: 'title',
+          maxLength: 200, // will be ignored if slugify is set
+          slugify: input => input
+                               .toLowerCase()
+                               .replace(/\s+/g, '-')
+                               .slice(0, 200)
+        }
+      },
+
+      // Blog content
       {
         name: 'content',
         title: 'Content',
@@ -38,7 +57,8 @@ export default {
         ]
       },
 
-      { // Datetime
+      // Time
+      { 
         title: 'Time field',
         name: 'Time',
         type: 'datetime',
@@ -48,7 +68,41 @@ export default {
             timeStep: 15,
             calendarTodayLabel: 'Today'
           }
+        },
+        
+        // meta description
+        { 
+          title: 'Meta Description',
+          name: 'metadesc',
+          type: 'string'
+          
+        },
+
+        // Blog Image
+        {
+          title: 'Image',
+          name: 'image',
+          type: 'image',
+          options: {
+            hotspot: true // <-- Defaults to false
+          },
+          fields: [
+            {
+              name: 'caption',
+              type: 'string',
+              title: 'Caption',
+              options: {
+                isHighlighted: true // <-- make this field easily accessible
+              }
+            },
+            {
+              // Editing this field will be hidden behind an "Edit"-button
+              name: 'attribution',
+              type: 'string',
+              title: 'Attribution',
+            }
+          ]
         }
-      
+
     ]
   }
