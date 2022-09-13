@@ -1,7 +1,7 @@
 export default {
     name: 'blog',
     type: 'document',
-      title: 'Blog',
+    title: 'Blog',
     fields: [
       { //Document
         title: 'Name',
