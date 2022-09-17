@@ -4,13 +4,13 @@ const NavBar = () => {
   return (
     <>
     <link
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
           href="/assets//styles/main.min.css"
           media="screen"
           rel="stylesheet"
         />
 <div>
-      <div className="w-full z-50 top-0 py-3 sm:py-5 absolute bg-[#493798] mb-8">
+      <div className="w-full z-50 top-0 py-3 sm:py-5 absolute bg-[rgba(85,64,175,1)] mb-8">
           <div className="container flex items-center justify-between">
             <div className="mx-12">
               <a href="/">

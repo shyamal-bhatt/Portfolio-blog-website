@@ -4,6 +4,7 @@ import Image from "next/image";
 import Script from "next/script";
 import Link from "next/link";
 import { useEffect } from "react";
+
 // CSS for Home page
 import styles from "../styles/Home.module.css";
 
@@ -28,9 +29,9 @@ export default function Home({ blog }) {
     <>
       <Script src="/assets//js/main.js"></Script>
       <Head>
-        <meta charset="utf-8" />
+        <meta charSet="utf-8" />
 
-        <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
+        <meta content="IE=edge,chrome=1" httpEquiv="X-UA-Compatible" />
 
         <meta
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -65,7 +66,7 @@ export default function Home({ blog }) {
         <meta name="twitter:site" content="@tailwindmade" />
 
         <link
-          crossorigin="crossorigin"
+          crossOrigin="crossorigin"
           href="https://fonts.gstatic.com"
           rel="preconnect"
         />
@@ -87,7 +88,7 @@ export default function Home({ blog }) {
         />
 
         <link
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
           href="/assets//styles/main.min.css"
           media="screen"
           rel="stylesheet"
@@ -653,6 +654,7 @@ export default function Home({ blog }) {
             </div>
           </div>
 
+{/* **************** Clients section **************** */}
           <div className="bg-grey-50" id="clients">
             <div className="container py-16 md:py-20">
               <div className="mx-auto w-full sm:w-3/4 lg:w-full">
@@ -703,6 +705,7 @@ export default function Home({ blog }) {
             </div>
           </div>
 
+{/* **************** Work Exp section **************** */}
           <div className="container py-16 md:py-20" id="work">
             <h2 className="text-center font-header text-4xl font-semibold uppercase text-primary sm:text-5xl lg:text-6xl">
               My work experience
@@ -837,6 +840,7 @@ export default function Home({ blog }) {
             </div>
           </div>
 
+{/* **************** Statistics section **************** */}
           <div
             className="bg-cover bg-top bg-no-repeat pb-16 md:py-16 lg:py-24"
             style={{
@@ -972,51 +976,6 @@ export default function Home({ blog }) {
                     </Link>
                   );
                 })}
-
-                {/* Second post */}
-                {/* <a href="/post" className="shadow">
-                  <div
-                    style={{ backgroundImage: "url(/assets/img/post-02.png)" }}
-                    className="group relative h-72 bg-cover bg-center bg-no-repeat sm:h-84 lg:h-64 xl:h-72"
-                  >
-                    <span className="absolute inset-0 block bg-gradient-to-b from-blog-gradient-from to-blog-gradient-to bg-cover bg-center bg-no-repeat opacity-10 transition-opacity group-hover:opacity-50"></span>
-                    <span className="absolute right-0 bottom-0 mr-4 mb-4 block rounded-full border-2 border-white px-6 py-2 text-center font-body text-sm font-bold uppercase text-white md:text-base">
-                      Read More
-                    </span>
-                  </div>
-                  <div className="bg-white py-6 px-5 xl:py-8">
-                    <span className="block font-body text-lg font-semibold text-black">
-                      My personal productivity system
-                    </span>
-                    <span className="block pt-2 font-body text-grey-20">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua.
-                    </span>
-                  </div>
-                </a> */}
-                {/* Third post */}
-                {/* <a href="/post" className="shadow">
-                  <div
-                    style={{ backgroundImage: "url(/assets/img/post-03.png)" }}
-                    className="group relative h-72 bg-cover bg-center bg-no-repeat sm:h-84 lg:h-64 xl:h-72"
-                  >
-                    <span className="absolute inset-0 block bg-gradient-to-b from-blog-gradient-from to-blog-gradient-to bg-cover bg-center bg-no-repeat opacity-10 transition-opacity group-hover:opacity-50"></span>
-                    <span className="absolute right-0 bottom-0 mr-4 mb-4 block rounded-full border-2 border-white px-6 py-2 text-center font-body text-sm font-bold uppercase text-white md:text-base">
-                      Read More
-                    </span>
-                  </div>
-                  <div className="bg-white py-6 px-5 xl:py-8">
-                    <span className="block font-body text-lg font-semibold text-black">
-                      My year in review 2020
-                    </span>
-                    <span className="block pt-2 font-body text-grey-20">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua.
-                    </span>
-                  </div>
-                </a> */}
               </div>
             </div>
           </div>
@@ -1181,7 +1140,7 @@ export async function getServerSideProps(context) {
     dataset: "production",
     useCdn: false,
   });
-  const query = `*[_type == "blog"]`;
+  const query = `*[_type == "blog"][0...3]`;
   const blog = await client.fetch(query);
   return {
     props: {
