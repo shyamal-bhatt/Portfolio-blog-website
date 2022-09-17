@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import NavBar from "../components/NavBar";
+import Head from "next/head";
 
 import imageUrlBuilder from "@sanity/image-url";
 import { createClient } from "next-sanity";
@@ -17,6 +18,22 @@ const Blogs = ({blog}) => {
 
   return (
     <>
+    <Head>
+        <link
+          crossOrigin="anonymous"
+          href="/assets//styles/main.min.css"
+          media="screen"
+          rel="stylesheet"
+        />
+
+        <link
+          href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Raleway:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+
+        <title>Blogs</title>
+        <link rel="icon" type="image/png" href="/assets/img/favicon.png" />
+      </Head>
     <NavBar/>
     <div className="bg-grey-50 my-12" id="blog">
       <div className="container mx-auto py-16 md:py-20">

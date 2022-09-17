@@ -3,17 +3,16 @@ import Head from "next/head";
 import Image from "next/image";
 import Script from "next/script";
 import Link from "next/link";
-import { useEffect } from "react";
+import PortableText from "react-portable-text";
 
 // CSS for Home page
 import styles from "../styles/Home.module.css";
 
 // Sanity associated modules
-import PortableText from "react-portable-text";
 import { createClient } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
 
-export default function Home({ blog }) {
+export default function Home({ blog, profile }) {
   const myConfiguredSanityClient = createClient({
     projectId: "4jggrkm3",
     dataset: "production",
@@ -21,9 +20,7 @@ export default function Home({ blog }) {
   });
   const builder = imageUrlBuilder(myConfiguredSanityClient);
 
-  useEffect(() => {
-    console.log("Working");
-  }, []);
+  // console.log(profile);
 
   return (
     <>
@@ -38,7 +35,7 @@ export default function Home({ blog }) {
           name="viewport"
         />
 
-        <title>Homepage | Atom Template</title>
+        <title>{profile.title}</title>
 
         <meta property="og:title" content="Homepage | Atom Template" />
 
@@ -86,7 +83,7 @@ export default function Home({ blog }) {
           href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
           rel="stylesheet"
         />
-
+{/* Style sheets import here */}
         <link
           crossOrigin="anonymous"
           href="/assets//styles/main.min.css"
@@ -182,12 +179,13 @@ export default function Home({ blog }) {
                 </li>
 
                 <li className="group pl-6">
-                  <a href="#blog">
+                  <Link href={'/blogs'}>
+                  <a>
                   <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
                     Blog
                   </span>
                   </a>
-
+                  </Link>
                   <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
                 </li>
 
@@ -286,7 +284,7 @@ export default function Home({ blog }) {
                 <div className="rounded-full border-8 border-primary shadow-xl">
 {/* ********* My image ************** */}
                   <img
-                    src="/assets//img/blog-author.jpg"
+                    src={builder.image(profile.image).url()}
                     className="h-48 rounded-full sm:h-56"
                     alt="author"
                   />
@@ -294,7 +292,7 @@ export default function Home({ blog }) {
 {/* ********* My Name ********* */}
                 <div className="pt-8 sm:pt-10 lg:pl-8 lg:pt-0">
                   <h1 className="text-center font-header text-4xl text-white sm:text-left sm:text-5xl md:text-6xl">
-                    Hello, I'm Shyamal Bhatt!
+                    Hello, I'm {profile.name} !
                   </h1>
                   <div className="flex flex-col justify-center pt-3 sm:flex-row sm:pt-5 lg:justify-start ">
                     <div className="flex items-center justify-center pl-0 sm:justify-start md:pl-1 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300">
@@ -336,18 +334,24 @@ export default function Home({ blog }) {
                   Who am I?
                 </h2>
                 <h4 className="pt-6 font-header text-xl font-medium text-black sm:text-2xl lg:text-3xl">
-                  I'm Shyamal Bhatt, a Data Analyst & Scientist
+                  I'm {profile.name}, {profile.jobRole}.
                 </h4>
-                <p className="pt-6 font-body leading-relaxed text-grey-20">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum.
-                </p>
+                <div className="pt-6 font-body leading-relaxed text-grey-20">
+                <PortableText
+                    // Pass in block content straight from Sanity.io
+                    content={profile.desc}
+                    projectId="4jggrkm3"
+                    dataset="production"
+                    // Optionally override marks, decorators, blocks, etc. in a flat
+                    // structure without doing any gymnastics
+                    serializers={{
+                      h1: (props) => <h1 style={{ color: "red" }} {...props} />,
+                      li: ({ children }) => (
+                        <li className="special-list-item">{children}</li>
+                      ),
+                    }}
+                  />
+                </div>
                 <div className="flex flex-col justify-center pt-6 sm:flex-row lg:justify-start">
                   <div className="flex items-center justify-center sm:justify-start">
                     <p className="font-body text-lg font-semibold uppercase text-grey-20">
@@ -451,7 +455,7 @@ export default function Home({ blog }) {
               Here's what I'm good at
             </h2>
             <h3 className="pt-6 text-center font-header text-xl font-medium text-black sm:text-2xl lg:text-3xl">
-              These are the services Ioffer
+              These are the services I offer
             </h3>
 
             <div className="grid grid-cols-1 gap-6 pt-10 sm:grid-cols-2 md:gap-10 md:pt-12 lg:grid-cols-3">
@@ -1060,11 +1064,6 @@ export default function Home({ blog }) {
           </div>
 
           <div
-            className="h-72 bg-cover bg-center bg-no-repeat sm:h-64 md:h-72 lg:h-96"
-            style={{ backgroundImage: "url(/assets/img/map.png)" }}
-          ></div>
-
-          <div
             className="relative bg-primary bg-cover bg-center bg-no-repeat py-16 bg-blend-multiply lg:py-24"
             style={{ backgroundImage: "url(/assets/img/bg-cta.jpg)" }}
           >
@@ -1113,23 +1112,6 @@ export default function Home({ blog }) {
           </div>
         </div>
       </div>
-
-      {/* <div>
-        <PortableText
-          // Pass in block content straight from Sanity.io
-          content={blog[0].content}
-          projectId= "4jggrkm3"
-          dataset= "production"
-          // Optionally override marks, decorators, blocks, etc. in a flat
-          // structure without doing any gymnastics
-          serializers={{
-            h1: (props) => <h1 style={{ color: "red" }} {...props} />,
-            li: ({ children }) => (
-              <li className="special-list-item">{children}</li>
-            ),
-          }}
-        />
-        </div> */}
     </>
   );
 }
@@ -1142,9 +1124,15 @@ export async function getServerSideProps(context) {
   });
   const query = `*[_type == "blog"][0...3]`;
   const blog = await client.fetch(query);
+
+  const profileQuery = `*[_type == "profile"][0]`;
+  const profile = await client.fetch(profileQuery);
+
   return {
     props: {
       blog,
+      profile
     },
   };
 }
+
