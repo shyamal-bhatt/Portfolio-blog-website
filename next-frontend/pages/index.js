@@ -4,6 +4,8 @@ import Image from "next/image";
 import Script from "next/script";
 import Link from "next/link";
 import PortableText from "react-portable-text";
+import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
 
 // CSS for Home page
 import styles from "../styles/Home.module.css";
@@ -19,8 +21,6 @@ export default function Home({ blog, profile }) {
     useCdn: false,
   });
   const builder = imageUrlBuilder(myConfiguredSanityClient);
-
-  // console.log(profile);
 
   return (
     <>
@@ -78,12 +78,12 @@ export default function Home({ blog, profile }) {
           href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Raleway:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
-{/* social media icons from here. */}
+        {/* social media icons from here. */}
         <link
           href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
           rel="stylesheet"
         />
-{/* Style sheets import here */}
+        {/* Style sheets import here */}
         <link
           crossOrigin="anonymous"
           href="/assets//styles/main.min.css"
@@ -100,14 +100,15 @@ export default function Home({ blog, profile }) {
           defer
           src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
         ></Script>
+
+        <Script src="/assets//js//main.js"></Script>
       </Head>
 
       {/* ==================================================== */}
-
       <div id="main" className="relative">
-        <div className="w-full z-50 top-0 py-3 sm:py-5  absolute">
+        <NavBar />
+        {/* <div className="w-full z-50 top-0 py-3 sm:py-5  absolute">
           <div className="container flex items-center justify-between">
-{/*  ========= Nav Bar logo ========= */}
             <div>
               <a href="/">
                 <img
@@ -117,11 +118,9 @@ export default function Home({ blog, profile }) {
                 />
               </a>
             </div>
-{/* ************* Nav bar *************** */}
             <div className="hidden lg:block">
               <ul className="flex items-center">
                 <li className="group pl-6">
-                  {/* Directed to about */}
                   <a href="#about">
                     <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
                       About
@@ -200,16 +199,16 @@ export default function Home({ blog, profile }) {
                 </li>
               </ul>
             </div>
-{/* Menu button */}
             <div className="block lg:hidden">
               <button>
                 <i className="bx bx-menu text-4xl text-white"></i>
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
+{/* Nav for mobile */}
 
-        <div className="pointer-events-none fixed inset-0 z-70 min-h-screen bg-black bg-opacity-70 opacity-0 transition-opacity lg:hidden">
+        {/* <div className="pointer-events-none fixed inset-0 z-70 min-h-screen bg-black bg-opacity-70 opacity-0 transition-opacity lg:hidden">
           <div className="absolute right-0 min-h-screen w-2/3 bg-primary py-4 px-8 shadow md:w-1/3">
             <button className="absolute top-0 right-0 mt-4 mr-4">
               <img
@@ -269,27 +268,28 @@ export default function Home({ blog, profile }) {
               </li>
             </ul>
           </div>
-        </div>
+        </div> */}
 
-{/* Info section */}
+        {/* Info section */}
         <div>
-      {/* blur Background image */}
+          {/* blur Background image */}
           <div
             className="relative bg-cover bg-center bg-no-repeat py-8"
-            style={{ backgroundImage: "url(/assets/img/bg-hero.jpg)" }}>
+            style={{ backgroundImage: "url(/assets/img/bg-hero.jpg)" }}
+          >
             <div className="absolute inset-0 z-20 bg-gradient-to-r from-hero-gradient-from to-hero-gradient-to bg-cover bg-center bg-no-repeat"></div>
 
             <div className="container relative z-30 pt-20 pb-12 sm:pt-56 sm:pb-48 lg:pt-64 lg:pb-48">
               <div className="flex flex-col items-center justify-center lg:flex-row">
-                <div className="rounded-full border-8 border-primary shadow-xl">
-{/* ********* My image ************** */}
+                <div className="rounded-full border-8 border-primary shadow-xl" data-aos="fade-up">
+                  {/* ********* My image ************** */}
                   <img
                     src={builder.image(profile.image).url()}
                     className="h-48 rounded-full sm:h-56"
                     alt="author"
                   />
                 </div>
-{/* ********* My Name ********* */}
+                {/* ********* My Name ********* */}
                 <div className="pt-8 sm:pt-10 lg:pl-8 lg:pt-0">
                   <h1 className="text-center font-header text-4xl text-white sm:text-left sm:text-5xl md:text-6xl">
                     Hello, I'm {profile.name} !
@@ -306,9 +306,6 @@ export default function Home({ blog, profile }) {
                     <div className="flex items-center justify-center pt-5 pl-2 sm:justify-start sm:pt-0">
                       <a href="/">
                         <i className="bx bxl-github text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
-                      </a>
-                      <a href="/" className="pl-4">
-                        <i className="bx bxl-twitter text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
                       </a>
                       <a href="/" className="pl-4">
                         <i className="bx bxl-medium text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
@@ -337,7 +334,7 @@ export default function Home({ blog, profile }) {
                   I'm {profile.name}, {profile.jobRole}.
                 </h4>
                 <div className="pt-6 font-body leading-relaxed text-grey-20">
-                <PortableText
+                  <PortableText
                     // Pass in block content straight from Sanity.io
                     content={profile.desc}
                     projectId="4jggrkm3"
@@ -364,9 +361,6 @@ export default function Home({ blog, profile }) {
                   <div className="flex items-center justify-center pt-5 pl-2 sm:justify-start sm:pt-0">
                     <a href="/">
                       <i className="bx bxl-github text-2xl text-primary hover:text-yellow"></i>
-                    </a>
-                    <a href="/" className="pl-4">
-                      <i className="bx bxl-twitter text-2xl text-primary hover:text-yellow"></i>
                     </a>
                     <a href="/" className="pl-4">
                       <i className="bx bxl-medium text-2xl text-primary hover:text-yellow"></i>
@@ -658,7 +652,7 @@ export default function Home({ blog, profile }) {
             </div>
           </div>
 
-{/* **************** Clients section **************** */}
+          {/* **************** Clients section **************** */}
           <div className="bg-grey-50" id="clients">
             <div className="container py-16 md:py-20">
               <div className="mx-auto w-full sm:w-3/4 lg:w-full">
@@ -709,7 +703,7 @@ export default function Home({ blog, profile }) {
             </div>
           </div>
 
-{/* **************** Work Exp section **************** */}
+          {/* **************** Work Exp section **************** */}
           <div className="container py-16 md:py-20" id="work">
             <h2 className="text-center font-header text-4xl font-semibold uppercase text-primary sm:text-5xl lg:text-6xl">
               My work experience
@@ -844,7 +838,7 @@ export default function Home({ blog, profile }) {
             </div>
           </div>
 
-{/* **************** Statistics section **************** */}
+          {/* **************** Statistics section **************** */}
           <div
             className="bg-cover bg-top bg-no-repeat pb-16 md:py-16 lg:py-24"
             style={{
@@ -931,7 +925,7 @@ export default function Home({ blog, profile }) {
             </div>
           </div>
 
-{/* Latest blog posts */}
+          {/* Latest blog posts */}
           <div className="bg-grey-50" id="blog">
             <div className="container py-16 md:py-20">
               <h2 className="text-center font-header text-4xl font-semibold uppercase text-primary sm:text-5xl lg:text-6xl">
@@ -1026,9 +1020,9 @@ export default function Home({ blog, profile }) {
                 <i className="bx bx-chevron-right relative -right-2 text-3xl"></i>
               </button>
             </form>
-            <div className="flex flex-col pt-16 lg:flex-row">
-              <div className="w-full border-l-2 border-t-2 border-r-2 border-b-2 border-grey-60 px-6 py-6 sm:py-8 lg:w-1/3">
-                <div className="flex items-center">
+            <div className="flex flex-col pt-16 lg:flex-row ">
+              <div className=" border-r-2 border-grey-60  sm:py-8 lg:w-1/3">
+                {/* <div className="flex items-center">
                   <i className="bx bx-phone text-2xl text-grey-40"></i>
                   <p className="pl-2 font-body font-bold uppercase text-grey-40 lg:text-lg">
                     My Phone
@@ -1036,7 +1030,7 @@ export default function Home({ blog, profile }) {
                 </div>
                 <p className="pt-2 text-left font-body font-bold text-primary lg:text-lg">
                   (+881) 111 222 333
-                </p>
+                </p> */}
               </div>
               <div className="w-full border-l-2 border-t-0 border-r-2 border-b-2 border-grey-60 px-6 py-6 sm:py-8 lg:w-1/3 lg:border-l-0 lg:border-t-2">
                 <div className="flex items-center">
@@ -1053,64 +1047,45 @@ export default function Home({ blog, profile }) {
                 <div className="flex items-center">
                   <i className="bx bx-map text-2xl text-grey-40"></i>
                   <p className="pl-2 font-body font-bold uppercase text-grey-40 lg:text-lg">
-                    My Address
+                    My Location
                   </p>
                 </div>
                 <p className="pt-2 text-left font-body font-bold text-primary lg:text-lg">
-                  123 New York D Block 1100, 2011 USA
+                  Mumbai, Maharashtra
                 </p>
               </div>
             </div>
           </div>
+        </div>
 
-          <div
-            className="relative bg-primary bg-cover bg-center bg-no-repeat py-16 bg-blend-multiply lg:py-24"
-            style={{ backgroundImage: "url(/assets/img/bg-cta.jpg)" }}
+        {/* Scroller */}
+        <div>
+          <button
+            type="button"
+            data-mdb-ripple="true"
+            data-mdb-ripple-color="light"
+            className="inline-block p-3 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5 delay-150 hover:-translate-y-1 hover:scale-110"
+            id="btn-back-to-top"
+            style={{ position: "fixed", display: "none" }}
           >
-            <div className="container relative z-30">
-              <h3 className="text-center font-header text-3xl uppercase leading-tight tracking-wide text-white sm:text-4xl lg:text-5xl">
-                Keep <span className="font-bold">up-to-date</span> <br />
-                with what I'm up to
-              </h3>
-              <form className="mt-6 flex flex-col justify-center sm:flex-row">
-                <input
-                  className="w-full rounded px-4 py-3 font-body text-black sm:w-2/5 sm:py-4 lg:w-1/3"
-                  type="text"
-                  id="email"
-                  placeholder="Give me your Email"
-                />
-                <button className="mt-2 rounded bg-yellow px-8 py-3 font-body text-base font-bold uppercase text-primary transition-colors hover:bg-primary hover:text-white focus:border-transparent focus:outline-none focus:ring focus:ring-yellow sm:ml-2 sm:mt-0 sm:py-4 md:text-lg">
-                  Join the club
-                </button>
-              </form>
-            </div>
-          </div>
+            <svg
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fas"
+              className="w-4 h-4"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+            >
+              <path
+                fill="currentColor"
+                d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"
+              ></path>
+            </svg>
+          </button>
         </div>
 
-        <div className="bg-primary">
-          <div className="container flex flex-col justify-between py-6 sm:flex-row">
-            <p className="text-center font-body text-white md:text-left">
-              © Copyright 2022. All right reserved, ATOM.
-            </p>
-            <div className="flex items-center justify-center pt-5 sm:justify-start sm:pt-0">
-              <a href="/">
-                <i className="bx bxl-facebook-square text-2xl text-white hover:text-yellow"></i>
-              </a>
-              <a href="/" className="pl-4">
-                <i className="bx bxl-twitter text-2xl text-white hover:text-yellow"></i>
-              </a>
-              <a href="/" className="pl-4">
-                <i className="bx bxl-dribbble text-2xl text-white hover:text-yellow"></i>
-              </a>
-              <a href="/" className="pl-4">
-                <i className="bx bxl-linkedin text-2xl text-white hover:text-yellow"></i>
-              </a>
-              <a href="/" className="pl-4">
-                <i className="bx bxl-instagram text-2xl text-white hover:text-yellow"></i>
-              </a>
-            </div>
-          </div>
-        </div>
+        <Footer />
       </div>
     </>
   );
@@ -1131,8 +1106,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       blog,
-      profile
+      profile,
     },
   };
 }
-

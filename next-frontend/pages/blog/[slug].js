@@ -5,6 +5,7 @@ import PortableText from "react-portable-text";
 import NavBar from "../../components/NavBar";
 import moment from 'moment';
 import imageUrlBuilder from "@sanity/image-url";
+import Footer from "../../components/Footer";
 
 const Post = ({ blog, profile }) => {
   const myConfiguredSanityClient = createClient({
@@ -13,9 +14,7 @@ const Post = ({ blog, profile }) => {
     useCdn: false,
   });
   const builder = imageUrlBuilder(myConfiguredSanityClient);
-  
   const router = useRouter();
-  const { slug } = router.query;
 
   return (
     <>
@@ -108,7 +107,7 @@ const Post = ({ blog, profile }) => {
 
       <div id="main" class="relative">
         <div>
-          <NavBar />
+          <NavBar backgroundColor = "#4a389c"/>
           <div className="pointer-events-none fixed inset-0 z-70 min-h-screen bg-black bg-opacity-70 opacity-0 transition-opacity lg:hidden">
             <div className="absolute right-0 min-h-screen w-2/3 bg-primary py-4 px-8 shadow md:w-1/3">
               <button className="absolute top-0 right-0 mt-4 mr-4">
@@ -242,7 +241,6 @@ const Post = ({ blog, profile }) => {
                 <div className="flex pt-10">
 
                   {blog.tags.map((item) => {
-                    console.log(typeof item);
                     return(
                         <a
                           href="/"
@@ -317,31 +315,7 @@ const Post = ({ blog, profile }) => {
               </div>
             </div>
           </div>
-
-          <div className="bg-primary">
-            <div className="container flex flex-col justify-between py-6 sm:flex-row">
-              <p className="text-center font-body text-white md:text-left">
-                © Copyright 2022. All right reserved, ATOM.
-              </p>
-              <div className="flex items-center justify-center pt-5 sm:justify-start sm:pt-0">
-                <a href="/">
-                  <i className="bx bxl-facebook-square text-2xl text-white hover:text-yellow"></i>
-                </a>
-                <a href="/" className="pl-4">
-                  <i className="bx bxl-twitter text-2xl text-white hover:text-yellow"></i>
-                </a>
-                <a href="/" className="pl-4">
-                  <i className="bx bxl-dribbble text-2xl text-white hover:text-yellow"></i>
-                </a>
-                <a href="/" className="pl-4">
-                  <i className="bx bxl-linkedin text-2xl text-white hover:text-yellow"></i>
-                </a>
-                <a href="/" className="pl-4">
-                  <i className="bx bxl-instagram text-2xl text-white hover:text-yellow"></i>
-                </a>
-              </div>
-            </div>
-          </div>
+          <Footer/>
         </div>
       </div>
     </>
@@ -352,7 +326,6 @@ export default Post;
 
 export async function getServerSideProps(context) {
   const { slug } = context.query;
-  console.log(slug);
   const client = createClient({
     projectId: "4jggrkm3",
     dataset: "production",

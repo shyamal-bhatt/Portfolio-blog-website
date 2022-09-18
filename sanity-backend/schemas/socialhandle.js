@@ -1,13 +1,18 @@
 export default {
     name: 'social',
-    type: 'document',
     title: 'Social Media Links',
+    type: 'document',
     fields: [
-        { 
-            title: 'Page Title',
-            name: 'title',
-            type: 'string'
-            
-          },
+        // Title
+        {
+          title: "Platform Name",
+          name: "social_platform_name",
+          type: "string",
+        },
+        {
+            title: 'Profile URL',
+            name: 'socialUrl',
+            type: 'url'
+        }
     ]
-}
+  }
