@@ -34,8 +34,8 @@ export default {
 
       // Profile Image
       {
-        title: 'Image',
-        name: 'image',
+        title: 'Profile Image',
+        name: 'myImage',
         type: 'image',
         options: {
           hotspot: true // <-- Defaults to false
@@ -65,7 +65,6 @@ export default {
         type: 'string'
         
       }
-
     ]
 }
 

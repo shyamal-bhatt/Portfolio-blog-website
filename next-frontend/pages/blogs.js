@@ -60,7 +60,7 @@ const Blogs = ({ blog }) => {
                     href={"/blog/" + item.slug.current}
                     className="shadow"
                   >
-                    <div>
+                    <div className="transform transition-all hover:scale-105 md:mx-0">
                       <div
                         // careating variable; fetching images from item object; if null set the deafult image.
                         // builder is the sanity object defined above.

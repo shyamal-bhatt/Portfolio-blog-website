@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-// import PropTypes from 'prop-types';
 
 // bg-[#4a389c]
 const NavBar = (col) => {
@@ -12,7 +11,7 @@ const NavBar = (col) => {
             <a href="/">
               <img
                 src="/assets//img/logo.svg"
-                className="w-24 lg:w-48"
+                className="w-24 lg:w-48 "
                 alt="logo image"
               />
             </a>
@@ -20,8 +19,8 @@ const NavBar = (col) => {
           {/* ************* Nav bar *************** */}
           <div className="hidden lg:block">
             <ul className="flex items-center">
+              
               <li className="group pl-6">
-                {/* Directed to about */}
                 <a href="/#about">
                   <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
                     About
@@ -42,36 +41,7 @@ const NavBar = (col) => {
               <li className="group pl-6">
                 <a href="/#portfolio">
                   <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
-                    Portfolio
-                  </span>
-                </a>
-
-                <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
-              </li>
-
-              <li className="group pl-6">
-                <a href="/#clients">
-                  <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
-                    Clients
-                  </span>
-                </a>
-                <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
-              </li>
-
-              <li className="group pl-6">
-                <a href="/#work">
-                  <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
-                    Work
-                  </span>
-                </a>
-
-                <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
-              </li>
-
-              <li className="group pl-6">
-                <a href="/#statistics">
-                  <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
-                    Statistics
+                    Projects
                   </span>
                 </a>
 
@@ -174,5 +144,3 @@ const NavBar = (col) => {
 };
 
 export default NavBar;
-
-// NavBar.propTypes = {colour: PropTypes.string}

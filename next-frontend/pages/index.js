@@ -1,6 +1,13 @@
+// Color pallete
+// #1A1A1D : rgb(26, 26, 29)
+// #4E4E50 : rgb(78, 78, 80)
+// #6F2232 : rgb(111, 34, 50)
+// #950740 : rgb(149, 7, 80)
+// #C3073F : rgb(195, 7, 63)
+
 // Next js compenents
 import Head from "next/head";
-import Image from "next/image";
+// import Image from "next/image";
 import Script from "next/script";
 import Link from "next/link";
 import PortableText from "react-portable-text";
@@ -8,7 +15,7 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 
 // CSS for Home page
-import styles from "../styles/Home.module.css";
+// import styles from "../styles/Home.module.css";
 
 // Sanity associated modules
 import { createClient } from "next-sanity";
@@ -106,169 +113,8 @@ export default function Home({ blog, profile }) {
 
       {/* ==================================================== */}
       <div id="main" className="relative">
+
         <NavBar />
-        {/* <div className="w-full z-50 top-0 py-3 sm:py-5  absolute">
-          <div className="container flex items-center justify-between">
-            <div>
-              <a href="/">
-                <img
-                  src="/assets//img/logo.svg"
-                  className="w-24 lg:w-48"
-                  alt="logo image"
-                />
-              </a>
-            </div>
-            <div className="hidden lg:block">
-              <ul className="flex items-center">
-                <li className="group pl-6">
-                  <a href="#about">
-                    <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
-                      About
-                    </span>
-                  </a>
-                  <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
-                </li>
-
-                <li className="group pl-6">
-                  <a href="#services">
-                    <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
-                      Services
-                    </span>
-                  </a>
-                  <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
-                </li>
-
-                <li className="group pl-6">
-                  <a href="#portfolio">
-                    <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
-                      Portfolio
-                    </span>
-                  </a>
-
-                  <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
-                </li>
-
-                <li className="group pl-6">
-                  <a href="#clients">
-                  <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
-                    Clients
-                  </span>
-                  </a>
-                  <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
-                </li>
-
-                <li className="group pl-6">
-                  <a href="#work">
-                  <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
-                    Work
-                  </span>
-                  </a>
-
-                  <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
-                </li>
-
-                <li className="group pl-6">
-                  <a href="#statistics">
-                  <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
-                    Statistics
-                  </span>
-                  </a>
-
-                  <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
-                </li>
-
-                <li className="group pl-6">
-                  <Link href={'/blogs'}>
-                  <a>
-                  <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
-                    Blog
-                  </span>
-                  </a>
-                  </Link>
-                  <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
-                </li>
-
-                <li className="group pl-6">
-                  <a href="#contact">
-                  <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
-                    Contact
-                  </span>
-                  </a>
-
-                  <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
-                </li>
-              </ul>
-            </div>
-            <div className="block lg:hidden">
-              <button>
-                <i className="bx bx-menu text-4xl text-white"></i>
-              </button>
-            </div>
-          </div>
-        </div> */}
-{/* Nav for mobile */}
-
-        {/* <div className="pointer-events-none fixed inset-0 z-70 min-h-screen bg-black bg-opacity-70 opacity-0 transition-opacity lg:hidden">
-          <div className="absolute right-0 min-h-screen w-2/3 bg-primary py-4 px-8 shadow md:w-1/3">
-            <button className="absolute top-0 right-0 mt-4 mr-4">
-              <img
-                src="/assets//img/icon-close.svg"
-                className="h-10 w-auto"
-                alt=""
-              />
-            </button>
-
-            <ul className="mt-8 flex flex-col">
-              <li className="py-2">
-                <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
-                  About
-                </span>
-              </li>
-
-              <li className="py-2">
-                <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
-                  Services
-                </span>
-              </li>
-
-              <li className="py-2">
-                <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
-                  Portfolio
-                </span>
-              </li>
-
-              <li className="py-2">
-                <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
-                  Clients
-                </span>
-              </li>
-
-              <li className="py-2">
-                <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
-                  Work
-                </span>
-              </li>
-
-              <li className="py-2">
-                <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
-                  Statistics
-                </span>
-              </li>
-
-              <li className="py-2">
-                <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
-                  Blog
-                </span>
-              </li>
-
-              <li className="py-2">
-                <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
-                  Contact
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div> */}
 
         {/* Info section */}
         <div>
@@ -284,7 +130,7 @@ export default function Home({ blog, profile }) {
                 <div className="rounded-full border-8 border-primary shadow-xl" data-aos="fade-up">
                   {/* ********* My image ************** */}
                   <img
-                    src={builder.image(profile.image).url()}
+                    src={builder.image(profile.myImage).url()}
                     className="h-48 rounded-full sm:h-56"
                     alt="author"
                   />
@@ -599,7 +445,7 @@ export default function Home({ blog, profile }) {
               </div>
             </div>
           </div>
-
+{/* Portfolio */}
           <div className="container py-16 md:py-20" id="portfolio">
             <h2 className="text-center font-header text-4xl font-semibold uppercase text-primary sm:text-5xl lg:text-6xl">
               Check out my Portfolio
@@ -649,279 +495,6 @@ export default function Home({ blog, profile }) {
                   alt="portfolio image"
                 />
               </a>
-            </div>
-          </div>
-
-          {/* **************** Clients section **************** */}
-          <div className="bg-grey-50" id="clients">
-            <div className="container py-16 md:py-20">
-              <div className="mx-auto w-full sm:w-3/4 lg:w-full">
-                <h2 className="text-center font-header text-4xl font-semibold uppercase text-primary sm:text-5xl lg:text-6xl">
-                  My latest clients
-                </h2>
-                <div className="flex flex-wrap items-center justify-center pt-4 sm:pt-4">
-                  <span className="m-8 block">
-                    <img
-                      src="/assets//img/logo-coca-cola.svg"
-                      alt="client logo"
-                      className="mx-auto block h-12 w-auto"
-                    />
-                  </span>
-                  <span className="m-8 block">
-                    <img
-                      src="/assets//img/logo-apple.svg"
-                      alt="client logo"
-                      className="mx-auto block h-12 w-auto"
-                    />
-                  </span>
-
-                  <span className="m-8 block">
-                    <img
-                      src="/assets//img/logo-netflix.svg"
-                      alt="client logo"
-                      className="mx-auto block h-12 w-auto"
-                    />
-                  </span>
-
-                  <span className="m-8 block">
-                    <img
-                      src="/assets//img/logo-amazon.svg"
-                      alt="client logo"
-                      className="mx-auto block h-12 w-auto"
-                    />
-                  </span>
-
-                  <span className="m-8 block">
-                    <img
-                      src="/assets//img/logo-stripe.svg"
-                      alt="client logo"
-                      className="mx-auto block h-12 w-auto"
-                    />
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* **************** Work Exp section **************** */}
-          <div className="container py-16 md:py-20" id="work">
-            <h2 className="text-center font-header text-4xl font-semibold uppercase text-primary sm:text-5xl lg:text-6xl">
-              My work experience
-            </h2>
-            <h3 className="pt-6 text-center font-header text-xl font-medium text-black sm:text-2xl lg:text-3xl">
-              Here's what I did before freelancing
-            </h3>
-
-            <div className="relative mx-auto mt-12 flex w-full flex-col lg:w-2/3">
-              <span className="left-2/5 absolute inset-y-0 ml-10 hidden w-0.5 bg-grey-40 md:block"></span>
-
-              <div className="mt-8 flex flex-col text-center md:flex-row md:text-left">
-                <div className="md:w-2/5">
-                  <div className="flex justify-center md:justify-start">
-                    <span className="shrink-0">
-                      <img
-                        src="/assets//img/logo-spotify.svg"
-                        className="h-auto w-32"
-                        alt="company logo"
-                      />
-                    </span>
-                    <div className="relative ml-3 hidden w-full md:block">
-                      <span className="absolute inset-x-0 top-1/2 h-0.5 -translate-y-1/2 transform bg-grey-70"></span>
-                    </div>
-                  </div>
-                </div>
-                <div className="md:w-3/5">
-                  <div className="relative flex md:pl-18">
-                    <span className="absolute left-8 top-1 hidden h-4 w-4 rounded-full border-2 border-grey-40 bg-white md:block"></span>
-
-                    <div className="mt-1 flex">
-                      <i className="bx bxs-right-arrow hidden text-primary md:block"></i>
-                      <div className="md:-mt-1 md:pl-8">
-                        <span className="block font-body font-bold text-grey-40">
-                          Apr 2015 - Mar 2018
-                        </span>
-                        <span className="block pt-2 font-header text-xl font-bold uppercase text-primary">
-                          Frontend Developer
-                        </span>
-                        <div className="pt-2">
-                          <span className="block font-body text-black">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Vestibulum mattis felis vitae risus pulvinar
-                            tincidunt. Nam ac venenatis enim.
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-8 flex flex-col text-center md:flex-row md:text-left">
-                <div className="md:w-2/5">
-                  <div className="flex justify-center md:justify-start">
-                    <span className="shrink-0">
-                      <img
-                        src="/assets//img/logo-microsoft.svg"
-                        className="h-auto w-32"
-                        alt="company logo"
-                      />
-                    </span>
-                    <div className="relative ml-3 hidden w-full md:block">
-                      <span className="absolute inset-x-0 top-1/2 h-0.5 -translate-y-1/2 transform bg-grey-70"></span>
-                    </div>
-                  </div>
-                </div>
-                <div className="md:w-3/5">
-                  <div className="relative flex md:pl-18">
-                    <span className="absolute left-8 top-1 hidden h-4 w-4 rounded-full border-2 border-grey-40 bg-white md:block"></span>
-
-                    <div className="mt-1 flex">
-                      <i className="bx bxs-right-arrow hidden text-primary md:block"></i>
-                      <div className="md:-mt-1 md:pl-8">
-                        <span className="block font-body font-bold text-grey-40">
-                          Mar 2018 - September 2019
-                        </span>
-                        <span className="block pt-2 font-header text-xl font-bold uppercase text-primary">
-                          Software Engineer
-                        </span>
-                        <div className="pt-2">
-                          <span className="block font-body text-black">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Vestibulum mattis felis vitae risus pulvinar
-                            tincidunt. Nam ac venenatis enim.
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-8 flex flex-col text-center md:flex-row md:text-left">
-                <div className="md:w-2/5">
-                  <div className="flex justify-center md:justify-start">
-                    <span className="shrink-0">
-                      <img
-                        src="/assets//img/logo-fedex.svg"
-                        className="h-auto w-32"
-                        alt="company logo"
-                      />
-                    </span>
-                    <div className="relative ml-3 hidden w-full md:block">
-                      <span className="absolute inset-x-0 top-1/2 h-0.5 -translate-y-1/2 transform bg-grey-70"></span>
-                    </div>
-                  </div>
-                </div>
-                <div className="md:w-3/5">
-                  <div className="relative flex md:pl-18">
-                    <span className="absolute left-8 top-1 hidden h-4 w-4 rounded-full border-2 border-grey-40 bg-white md:block"></span>
-
-                    <div className="mt-1 flex">
-                      <i className="bx bxs-right-arrow hidden text-primary md:block"></i>
-                      <div className="md:-mt-1 md:pl-8">
-                        <span className="block font-body font-bold text-grey-40">
-                          October 2019 - Feb 2021
-                        </span>
-                        <span className="block pt-2 font-header text-xl font-bold uppercase text-primary">
-                          DevOps Engineer
-                        </span>
-                        <div className="pt-2">
-                          <span className="block font-body text-black">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Vestibulum mattis felis vitae risus pulvinar
-                            tincidunt. Nam ac venenatis enim.
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* **************** Statistics section **************** */}
-          <div
-            className="bg-cover bg-top bg-no-repeat pb-16 md:py-16 lg:py-24"
-            style={{
-              backgroundImage: "url(/assets/img/experience-figure.png)",
-            }}
-            id="statistics"
-          >
-            <div className="container">
-              <div className="mx-auto w-5/6 bg-white py-16 shadow md:w-11/12 lg:py-20 xl:py-24 2xl:w-full">
-                <div className="grid grid-cols-2 gap-5 md:gap-8 xl:grid-cols-4 xl:gap-5">
-                  <div className="flex flex-col items-center justify-center text-center md:flex-row md:text-left">
-                    <div>
-                      <img
-                        src="/assets//img/icon-project.svg"
-                        className="mx-auto h-12 w-auto md:h-20"
-                        alt="icon project"
-                      />
-                    </div>
-                    <div className="pt-5 md:pl-5 md:pt-0">
-                      <h1 className="font-body text-2xl font-bold text-primary md:text-4xl">
-                        12
-                      </h1>
-                      <h4 className="text-grey-dark font-header text-base font-medium leading-loose md:text-xl">
-                        Finished Projects
-                      </h4>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col items-center justify-center text-center md:flex-row md:text-left">
-                    <div>
-                      <img
-                        src="/assets//img/icon-award.svg"
-                        className="mx-auto h-12 w-auto md:h-20"
-                        alt="icon award"
-                      />
-                    </div>
-                    <div className="pt-5 md:pl-5 md:pt-0">
-                      <h1 className="font-body text-2xl font-bold text-primary md:text-4xl">
-                        3
-                      </h1>
-                      <h4 className="text-grey-dark font-header text-base font-medium leading-loose md:text-xl">
-                        Awards Won
-                      </h4>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 flex flex-col items-center justify-center text-center md:mt-10 md:flex-row md:text-left lg:mt-0">
-                    <div>
-                      <img
-                        src="/assets//img/icon-happy.svg"
-                        className="mx-auto h-12 w-auto md:h-20"
-                        alt="icon happy clients"
-                      />
-                    </div>
-                    <div className="pt-5 md:pl-5 md:pt-0">
-                      <h1 className="font-body text-2xl font-bold text-primary md:text-4xl">
-                        8
-                      </h1>
-                      <h4 className="text-grey-dark font-header text-base font-medium leading-loose md:text-xl">
-                        Happy Clients
-                      </h4>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 flex flex-col items-center justify-center text-center md:mt-10 md:flex-row md:text-left lg:mt-0">
-                    <div>
-                      <img
-                        src="/assets//img/icon-puzzle.svg"
-                        className="mx-auto h-12 w-auto md:h-20"
-                        alt="icon puzzle"
-                      />
-                    </div>
-                    <div className="pt-5 md:pl-5 md:pt-0">
-                      <h1 className="font-body text-2xl font-bold text-primary md:text-4xl">
-                        99
-                      </h1>
-                      <h4 className="text-grey-dark font-header text-base font-medium leading-loose md:text-xl">
-                        Bugs Fixed
-                      </h4>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -1064,7 +637,7 @@ export default function Home({ blog, profile }) {
             type="button"
             data-mdb-ripple="true"
             data-mdb-ripple-color="light"
-            className="inline-block p-3 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5 delay-150 hover:-translate-y-1 hover:scale-110"
+            className="inline-block p-3 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5 delay-150 hover:-translate-y-1 hover:scale-110 animate-bounce"
             id="btn-back-to-top"
             style={{ position: "fixed", display: "none" }}
           >
