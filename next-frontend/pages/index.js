@@ -87,9 +87,10 @@ export default function Home({ blog, profile }) {
         />
         {/* social media icons from here. */}
         <link
-          href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+          href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
           rel="stylesheet"
         />
+
         {/* Style sheets import here */}
         <link
           crossOrigin="anonymous"
@@ -150,17 +151,17 @@ export default function Home({ blog, profile }) {
                       </div>
                     </div>
                     <div className="flex items-center justify-center pt-5 pl-2 sm:justify-start sm:pt-0">
-                      <a href="/">
+                      <a href="https://github.com/shyamal-sudo" className="cursor-pointer" target="_blank">
                         <i className="bx bxl-github text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
                       </a>
-                      <a href="/" className="pl-4">
+                      <a href="https://medium.com/" className="cursor-pointer pl-4" target="_blank">
                         <i className="bx bxl-medium text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
                       </a>
-                      <a href="/" className="pl-4">
+                      <a href="https://www.linkedin.com/in/shyamal-bhatt-33a392195/" className="cursor-pointer pl-4" target="_blank">
                         <i className="bx bxl-linkedin text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
                       </a>
-                      <a href="/" className="pl-4">
-                        <i className="bx bxl-whatsapp text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
+                      <a href="shyamalbhatt20@gmail.com" className="cursor-pointer pl-4" target="_blank">
+                        <i className="bx bxl-gmail text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
                       </a>
                     </div>
                   </div>
@@ -679,7 +680,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       blog,
-      profile,
+      profile
     },
   };
 }

@@ -8,12 +8,13 @@ const NavBar = (col) => {
       <div className="w-full z-50 top-0 py-3 sm:py-5 absolute" style={col}>
         <div className="container flex items-center justify-between">
           <div className="mx-12">
-            <a href="/">
-              <img
+            <a href="/" className="text-white ">
+              {/* <img
                 src="/assets//img/logo.svg"
                 className="w-24 lg:w-48 "
                 alt="logo image"
-              />
+              /> */}
+              hello.shyamal();
             </a>
           </div>
           {/* ************* Nav bar *************** */}
@@ -38,7 +39,7 @@ const NavBar = (col) => {
                 <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
               </li>
 
-              <li className="group pl-6">
+              <li className="group pl-6 animate-beat">
                 <a href="/#portfolio">
                   <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
                     Projects
@@ -48,10 +49,10 @@ const NavBar = (col) => {
                 <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
               </li>
 
-              <li className="group pl-6">
+              <li className="group pl-6 animate-wiggle">
                 <Link href={"/blogs"}>
                   <a target={"_blank"}>
-                    <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
+                    <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white ">
                       Blog
                     </span>
                   </a>
