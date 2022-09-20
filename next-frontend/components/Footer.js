@@ -1,6 +1,6 @@
 import React from "react";
 
-const Footer = () => {
+const Footer = (socialLinks) => {
   return (
     <>
       <div className="bg-primary">
@@ -9,16 +9,28 @@ const Footer = () => {
             © Copyright 2022. All right reserved.
           </p>
           <div className="flex items-center justify-center pt-5 sm:justify-start sm:pt-0">
-            <a href="/">
+            <a href={socialLinks.github} className="cursor-pointer" target="_blank">
               <i className="bx bxl-github text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
             </a>
-            <a href="/" className="pl-4">
+            <a
+              href={socialLinks.medium}
+              className="cursor-pointer pl-4"
+              target="_blank"
+            >
               <i className="bx bxl-medium text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
             </a>
-            <a href="/" className="pl-4">
+            <a
+              href={socialLinks.linkedin}
+              className="cursor-pointer pl-4"
+              target="_blank"
+            >
               <i className="bx bxl-linkedin text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
             </a>
-            <a href="/" className="pl-4">
+            <a
+              href={socialLinks.gmail}
+              className="cursor-pointer pl-4"
+              target="_blank"
+            >
               <i className="bx bxl-gmail text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
             </a>
           </div>

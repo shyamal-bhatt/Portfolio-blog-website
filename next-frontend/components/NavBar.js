@@ -8,13 +8,9 @@ const NavBar = (col) => {
       <div className="w-full z-50 top-0 py-3 sm:py-5 absolute" style={col}>
         <div className="container flex items-center justify-between">
           <div className="mx-12">
-            <a href="/" className="text-white ">
-              {/* <img
-                src="/assets//img/logo.svg"
-                className="w-24 lg:w-48 "
-                alt="logo image"
-              /> */}
-              hello.shyamal();
+            <a href="/" className="flex">
+              <h2 className="text-white text-xl font-semibold flex-1">hello.shyamal();</h2>
+              <div className="underline decoration-3 text-white text-xl font-bold flex-1 animate-pulse">_</div>
             </a>
           </div>
           {/* ************* Nav bar *************** */}

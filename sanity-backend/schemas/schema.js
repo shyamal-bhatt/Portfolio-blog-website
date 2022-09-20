@@ -4,6 +4,7 @@ import createSchema from 'part:@sanity/base/schema-creator'
 // Import created schema
 import blog from './blog'
 import profile from './profile'
+import socialhandles from './socialhandles'
 
 
 // Then import schema types from any plugins that might expose them
@@ -18,6 +19,8 @@ export default createSchema({
   types: schemaTypes.concat([
     /* Your types here! */
     // concat imported objects here
-    blog, profile
+    blog, 
+    profile,
+    socialhandles
   ]),
 })

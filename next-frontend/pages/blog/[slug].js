@@ -7,7 +7,10 @@ import moment from 'moment';
 import imageUrlBuilder from "@sanity/image-url";
 import Footer from "../../components/Footer";
 
-const Post = ({ blog, profile }) => {
+const Post = ({ blog, profile, social}) => {
+
+  console.log(social);
+
   const myConfiguredSanityClient = createClient({
     projectId: "4jggrkm3",
     dataset: "production",
@@ -76,7 +79,7 @@ const Post = ({ blog, profile }) => {
         />
 
         <link
-          href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+          href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
           rel="stylesheet"
         />
 
@@ -108,92 +111,6 @@ const Post = ({ blog, profile }) => {
       <div id="main" class="relative">
         <div>
           <NavBar backgroundColor = "#4a389c"/>
-          <div className="pointer-events-none fixed inset-0 z-70 min-h-screen bg-black bg-opacity-70 opacity-0 transition-opacity lg:hidden">
-            <div className="absolute right-0 min-h-screen w-2/3 bg-primary py-4 px-8 shadow md:w-1/3">
-              <button className="absolute top-0 right-0 mt-4 mr-4">
-                <img
-                  src="/assets/img/icon-close.svg"
-                  className="h-10 w-auto"
-                  alt=""
-                />
-              </button>
-
-              <ul className="mt-8 flex flex-col">
-                <li className="py-2">
-                  <a
-                    href="/#about"
-                    className="pt-0.5 font-header font-semibold uppercase text-white"
-                  >
-                    About
-                  </a>
-                </li>
-
-                <li className="py-2">
-                  <a
-                    href="/#services"
-                    className="pt-0.5 font-header font-semibold uppercase text-white"
-                  >
-                    Services
-                  </a>
-                </li>
-
-                <li className="py-2">
-                  <a
-                    href="/#portfolio"
-                    className="pt-0.5 font-header font-semibold uppercase text-white"
-                  >
-                    Portfolio
-                  </a>
-                </li>
-
-                <li className="py-2">
-                  <a
-                    href="/#clients"
-                    className="pt-0.5 font-header font-semibold uppercase text-white"
-                  >
-                    Clients
-                  </a>
-                </li>
-
-                <li className="py-2">
-                  <a
-                    href="/#work"
-                    className="pt-0.5 font-header font-semibold uppercase text-white"
-                  >
-                    Work
-                  </a>
-                </li>
-
-                <li className="py-2">
-                  <a
-                    href="/#statistics"
-                    className="pt-0.5 font-header font-semibold uppercase text-white"
-                  >
-                    Statistics
-                  </a>
-                </li>
-
-                <li className="py-2">
-                  <a
-                    href="/#blog"
-                    className="pt-0.5 font-header font-semibold uppercase text-white"
-                  >
-                    Blog
-                  </a>
-                </li>
-
-                <li className="py-2">
-                  <a
-                    href="/#contact"
-                    className="pt-0.5 font-header font-semibold uppercase text-white"
-                  >
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
           <div>
             <div className="container py-6 md:py-10">
               <div className="mx-auto max-w-4xl" style={{ marginTop: "7rem" }}>
@@ -219,7 +136,7 @@ const Post = ({ blog, profile }) => {
                     </div>
                   </div>
                 </div>
-                {/* *************** Blog Content *************** */}
+{/* *************** Blog Content *************** */}
                 <div className="prose max-w-none pt-8">
                   <PortableText
                     // Pass in block content straight from Sanity.io
@@ -242,12 +159,12 @@ const Post = ({ blog, profile }) => {
 
                   {blog.tags.map((item) => {
                     return(
-                        <a
+                        <div
                           href="/"
-                          className="rounded-xl bg-primary px-4 py-1 font-body font-bold text-white hover:bg-grey-20 mx-0.5"
+                          className="cursor-default rounded-xl bg-primary px-4 py-1 font-body font-bold text-white hover:bg-grey-20 mx-0.5"
                         >
                           {item}
-                        </a>
+                        </div>
                         );
                   })}
                 </div>
@@ -294,20 +211,17 @@ const Post = ({ blog, profile }) => {
                   />
                     </div>
                     <div className="flex items-center justify-center pt-5 md:justify-start">
-                      <a href="/">
-                        <i className="bx bxl-facebook-square text-2xl text-primary hover:text-yellow"></i>
+                      <a href={social.github}>
+                        <i className="bx bxl-github text-2xl text-primary hover:text-yellow"></i>
                       </a>
-                      <a href="/" className="pl-4">
-                        <i className="bx bxl-twitter text-2xl text-primary hover:text-yellow"></i>
+                      <a href={social.medium} className="pl-4">
+                        <i className="bx bxl-medium text-2xl text-primary hover:text-yellow"></i>
                       </a>
-                      <a href="/" className="pl-4">
-                        <i className="bx bxl-dribbble text-2xl text-primary hover:text-yellow"></i>
-                      </a>
-                      <a href="/" className="pl-4">
+                      <a href={social.linkedin} className="pl-4">
                         <i className="bx bxl-linkedin text-2xl text-primary hover:text-yellow"></i>
                       </a>
-                      <a href="/" className="pl-4">
-                        <i className="bx bxl-instagram text-2xl text-primary hover:text-yellow"></i>
+                      <a href={social.gmail} className="pl-4">
+                        <i className="bx bxl-gmail text-2xl text-primary hover:text-yellow"></i>
                       </a>
                     </div>
                   </div>
@@ -331,15 +245,20 @@ export async function getServerSideProps(context) {
     dataset: "production",
     useCdn: false,
   });
+
   const query = `*[_type == "blog" && slug.current == "${slug}"][0]`;
   const blog = await client.fetch(query);
 
   const profileQuery = `*[_type == "profile"][0]`;
   const profile = await client.fetch(profileQuery);
+
+  const socialQuery = `*[_type == "social"][0]`;
+  const social = await client.fetch(socialQuery);
   return {
     props: {
       blog,
-      profile
+      profile,
+      social
     },
   };
 }

@@ -21,7 +21,8 @@ import Footer from "../components/Footer";
 import { createClient } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
 
-export default function Home({ blog, profile }) {
+export default function Home({ blog, profile, social }) {
+
   const myConfiguredSanityClient = createClient({
     projectId: "4jggrkm3",
     dataset: "production",
@@ -151,16 +152,16 @@ export default function Home({ blog, profile }) {
                       </div>
                     </div>
                     <div className="flex items-center justify-center pt-5 pl-2 sm:justify-start sm:pt-0">
-                      <a href="https://github.com/shyamal-sudo" className="cursor-pointer" target="_blank">
+                      <a href={social.github} className="cursor-pointer" target="_blank">
                         <i className="bx bxl-github text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
                       </a>
-                      <a href="https://medium.com/" className="cursor-pointer pl-4" target="_blank">
+                      <a href={social.medium} className="cursor-pointer pl-4" target="_blank">
                         <i className="bx bxl-medium text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
                       </a>
-                      <a href="https://www.linkedin.com/in/shyamal-bhatt-33a392195/" className="cursor-pointer pl-4" target="_blank">
+                      <a href={social.linkedin} className="cursor-pointer pl-4" target="_blank">
                         <i className="bx bxl-linkedin text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
                       </a>
-                      <a href="shyamalbhatt20@gmail.com" className="cursor-pointer pl-4" target="_blank">
+                      <a href={social.gmail} className="cursor-pointer pl-4" target="_blank">
                         <i className="bx bxl-gmail text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
                       </a>
                     </div>
@@ -206,17 +207,17 @@ export default function Home({ blog, profile }) {
                     </div>
                   </div>
                   <div className="flex items-center justify-center pt-5 pl-2 sm:justify-start sm:pt-0">
-                    <a href="/">
+                    <a href={social.github}>
                       <i className="bx bxl-github text-2xl text-primary hover:text-yellow"></i>
                     </a>
-                    <a href="/" className="pl-4">
+                    <a href={social.medium} className="pl-4">
                       <i className="bx bxl-medium text-2xl text-primary hover:text-yellow"></i>
                     </a>
-                    <a href="/" className="pl-4">
+                    <a href={social.linkedin} className="pl-4">
                       <i className="bx bxl-linkedin text-2xl text-primary hover:text-yellow"></i>
                     </a>
-                    <a href="/" className="pl-4">
-                      <i className="bx bxl-whatsapp text-2xl text-primary hover:text-yellow"></i>
+                    <a href={social.gmail} className="pl-4">
+                      <i className="bx bxl-gmail text-2xl text-primary hover:text-yellow"></i>
                     </a>
                   </div>
                 </div>
@@ -594,19 +595,8 @@ export default function Home({ blog, profile }) {
                 <i className="bx bx-chevron-right relative -right-2 text-3xl"></i>
               </button>
             </form>
-            <div className="flex flex-col pt-16 lg:flex-row ">
-              <div className=" border-r-2 border-grey-60  sm:py-8 lg:w-1/3">
-                {/* <div className="flex items-center">
-                  <i className="bx bx-phone text-2xl text-grey-40"></i>
-                  <p className="pl-2 font-body font-bold uppercase text-grey-40 lg:text-lg">
-                    My Phone
-                  </p>
-                </div>
-                <p className="pt-2 text-left font-body font-bold text-primary lg:text-lg">
-                  (+881) 111 222 333
-                </p> */}
-              </div>
-              <div className="w-full border-l-2 border-t-0 border-r-2 border-b-2 border-grey-60 px-6 py-6 sm:py-8 lg:w-1/3 lg:border-l-0 lg:border-t-2">
+            <div className="flex flex-col pt-16 lg:flex-row justify-center">
+              <div className="w-full border-l-2 border-t-2 border-r-2 border-b-2 border-grey-60 px-6 py-6 sm:py-8 lg:w-1/3 lg:border-l-2 lg:border-t-2">
                 <div className="flex items-center">
                   <i className="bx bx-envelope text-2xl text-grey-40"></i>
                   <p className="pl-2 font-body font-bold uppercase text-grey-40 lg:text-lg">
@@ -659,7 +649,7 @@ export default function Home({ blog, profile }) {
           </button>
         </div>
 
-        <Footer />
+        <Footer socialLinks = {social}/>
       </div>
     </>
   );
@@ -677,10 +667,14 @@ export async function getServerSideProps(context) {
   const profileQuery = `*[_type == "profile"][0]`;
   const profile = await client.fetch(profileQuery);
 
+  const socialQuery = `*[_type == "social"][0]`;
+  const social = await client.fetch(socialQuery);
+
   return {
     props: {
       blog,
-      profile
+      profile,
+      social
     },
   };
 }
