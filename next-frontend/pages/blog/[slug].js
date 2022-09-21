@@ -1,14 +1,32 @@
+// NextJS Components
 import Head from "next/head";
-import { createClient } from "next-sanity";
-import { useRouter } from "next/router";
-import PortableText from "react-portable-text";
 import NavBar from "../../components/NavBar";
-import moment from 'moment';
-import imageUrlBuilder from "@sanity/image-url";
 import Footer from "../../components/Footer";
+import SyntaxHighlighter from 'react-syntax-highlighter';
 
-const Post = ({ blog, profile, social}) => {
+// Sanity Requirements
+import { createClient } from "next-sanity";
+import imageUrlBuilder from "@sanity/image-url";
+import PortableText from "react-portable-text";
 
+// miscellaneous
+import moment from "moment";
+
+const BlockContent = require("@sanity/block-content-to-react");
+const serializers = {
+  types: {
+    code: ({node = {}}) => {
+      const {code, language} = node
+      if(!code){
+        return null
+      }
+
+      return <SyntaxHighlighter language={language || 'text'}>{code}</SyntaxHighlighter>
+    },
+  },
+};
+
+const Post = ({ blog, profile, social }) => {
   console.log(social);
 
   const myConfiguredSanityClient = createClient({
@@ -17,7 +35,6 @@ const Post = ({ blog, profile, social}) => {
     useCdn: false,
   });
   const builder = imageUrlBuilder(myConfiguredSanityClient);
-  const router = useRouter();
 
   return (
     <>
@@ -110,7 +127,7 @@ const Post = ({ blog, profile, social}) => {
 
       <div id="main" class="relative">
         <div>
-          <NavBar backgroundColor = "#4a389c"/>
+          <NavBar backgroundColor="#4a389c" />
           <div>
             <div className="container py-6 md:py-10">
               <div className="mx-auto max-w-4xl" style={{ marginTop: "7rem" }}>
@@ -136,36 +153,25 @@ const Post = ({ blog, profile, social}) => {
                     </div>
                   </div>
                 </div>
-{/* *************** Blog Content *************** */}
+                {/* *************** Blog Content *************** */}
                 <div className="prose max-w-none pt-8">
-                  <PortableText
-                    // Pass in block content straight from Sanity.io
-                    content={blog.content}
-                    projectId="4jggrkm3"
-                    dataset="production"
-                    // Optionally override marks, decorators, blocks, etc. in a flat
-                    // structure without doing any gymnastics
-                    serializers={{
-                      h1: (props) => <h1 style={{ color: "red" }} {...props} />,
-                      li: ({ children }) => (
-                        <li className="special-list-item">{children}</li>
-                      ),
-                    }}
+                  <BlockContent
+                    blocks={blog.content}
+                    serializers={serializers}
                   />
                 </div>
 
                 {/* *************** Blog Tags *************** */}
                 <div className="flex pt-10">
-
                   {blog.tags.map((item) => {
-                    return(
-                        <div
-                          href="/"
-                          className="cursor-default rounded-xl bg-primary px-4 py-1 font-body font-bold text-white hover:bg-grey-20 mx-0.5"
-                        >
-                          {item}
-                        </div>
-                        );
+                    return (
+                      <div
+                        href="/"
+                        className="cursor-default rounded-xl bg-primary px-4 py-1 font-body font-bold text-white hover:bg-grey-20 mx-0.5"
+                      >
+                        {item}
+                      </div>
+                    );
                   })}
                 </div>
                 <div className="mt-10 flex justify-between border-t border-lila py-12">
@@ -195,20 +201,22 @@ const Post = ({ blog, profile, social}) => {
                       {profile.name}
                     </h3>
                     <div className="pt-5 font-body text-lg leading-8 text-secondary sm:leading-9 md:text-xl md:leading-9 lg:leading-9 xl:leading-9">
-                    <PortableText
-                    // Pass in block content straight from Sanity.io
-                    content={profile.desc}
-                    projectId="4jggrkm3"
-                    dataset="production"
-                    // Optionally override marks, decorators, blocks, etc. in a flat
-                    // structure without doing any gymnastics
-                    serializers={{
-                      h1: (props) => <h1 style={{ color: "red" }} {...props} />,
-                      li: ({ children }) => (
-                        <li className="special-list-item">{children}</li>
-                      ),
-                    }}
-                  />
+                      <PortableText
+                        // Pass in block content straight from Sanity.io
+                        content={profile.desc}
+                        projectId="4jggrkm3"
+                        dataset="production"
+                        // Optionally override marks, decorators, blocks, etc. in a flat
+                        // structure without doing any gymnastics
+                        serializers={{
+                          h1: (props) => (
+                            <h1 style={{ color: "red" }} {...props} />
+                          ),
+                          li: ({ children }) => (
+                            <li className="special-list-item">{children}</li>
+                          ),
+                        }}
+                      />
                     </div>
                     <div className="flex items-center justify-center pt-5 md:justify-start">
                       <a href={social.github}>
@@ -220,7 +228,7 @@ const Post = ({ blog, profile, social}) => {
                       <a href={social.linkedin} className="pl-4">
                         <i className="bx bxl-linkedin text-2xl text-primary hover:text-yellow"></i>
                       </a>
-                      <a href={social.gmail} className="pl-4">
+                      <a href={"mailto:"+social.gmail} className="pl-4">
                         <i className="bx bxl-gmail text-2xl text-primary hover:text-yellow"></i>
                       </a>
                     </div>
@@ -229,7 +237,7 @@ const Post = ({ blog, profile, social}) => {
               </div>
             </div>
           </div>
-          <Footer/>
+          <Footer />
         </div>
       </div>
     </>
@@ -258,7 +266,7 @@ export async function getServerSideProps(context) {
     props: {
       blog,
       profile,
-      social
+      social,
     },
   };
 }

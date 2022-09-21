@@ -7,12 +7,12 @@
 
 // Next js compenents
 import Head from "next/head";
-// import Image from "next/image";
 import Script from "next/script";
 import Link from "next/link";
 import PortableText from "react-portable-text";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+// import ButtonMailto from "../components/buttonMailto";
 
 // CSS for Home page
 // import styles from "../styles/Home.module.css";
@@ -161,7 +161,7 @@ export default function Home({ blog, profile, social }) {
                       <a href={social.linkedin} className="cursor-pointer pl-4" target="_blank">
                         <i className="bx bxl-linkedin text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
                       </a>
-                      <a href={social.gmail} className="cursor-pointer pl-4" target="_blank">
+                      <a href = {"mailto:"+social.gmail} className="cursor-pointer pl-4" target="_blank">
                         <i className="bx bxl-gmail text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
                       </a>
                     </div>
@@ -216,7 +216,7 @@ export default function Home({ blog, profile, social }) {
                     <a href={social.linkedin} className="pl-4">
                       <i className="bx bxl-linkedin text-2xl text-primary hover:text-yellow"></i>
                     </a>
-                    <a href={social.gmail} className="pl-4">
+                    <a href={"mailto:"+social.gmail} className="pl-4">
                       <i className="bx bxl-gmail text-2xl text-primary hover:text-yellow"></i>
                     </a>
                   </div>
