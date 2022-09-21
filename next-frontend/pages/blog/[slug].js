@@ -13,7 +13,9 @@ import PortableText from "react-portable-text";
 import moment from "moment";
 
 const BlockContent = require("@sanity/block-content-to-react");
+
 const serializers = {
+
   types: {
     code: ({node = {}}) => {
       const {code, language} = node
@@ -27,8 +29,6 @@ const serializers = {
 };
 
 const Post = ({ blog, profile, social }) => {
-  console.log(social);
-
   const myConfiguredSanityClient = createClient({
     projectId: "4jggrkm3",
     dataset: "production",
@@ -157,7 +157,10 @@ const Post = ({ blog, profile, social }) => {
                 <div className="prose max-w-none pt-8">
                   <BlockContent
                     blocks={blog.content}
+                    imageOptions={{w: 320, h: 240, fit: 'max'}}
                     serializers={serializers}
+                    projectId = "4jggrkm3"
+                    dataset = "production"
                   />
                 </div>
 
