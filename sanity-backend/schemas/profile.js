@@ -12,6 +12,14 @@ export default {
         
       },
 
+      // Resume Link
+      { 
+        title: 'Resume Link',
+        name: 'resume',
+        type: 'string'
+        
+      },
+
       // Name
       { 
         title: 'Name',

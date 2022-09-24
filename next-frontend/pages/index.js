@@ -4,6 +4,7 @@
 // #6F2232 : rgb(111, 34, 50)
 // #950740 : rgb(149, 7, 80)
 // #C3073F : rgb(195, 7, 63)
+// #070e18
 
 // Next js compenents
 import Head from "next/head";
@@ -21,7 +22,7 @@ import Footer from "../components/Footer";
 import { createClient } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
 
-export default function Home({ blog, profile, social }) {
+export default function Home({ blog, profile, social, skills }) {
 
   const myConfiguredSanityClient = createClient({
     projectId: "4jggrkm3",
@@ -166,6 +167,13 @@ export default function Home({ blog, profile, social }) {
                       </a>
                     </div>
                   </div>
+                  <div className="buttons text-center  md:text-left" style={{paddingLeft: '4px'}}>
+                    <Link href={profile.resume}>
+                    <button className="hover:underline decoration-yellow-500 font-body text-lg font-semibold uppercase text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300">
+                      My Resume
+                    </button>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -223,22 +231,28 @@ export default function Home({ blog, profile, social }) {
                 </div>
               </div>
               <div className="w-full pl-0 pt-10 sm:w-3/4 lg:w-2/5 lg:pl-12 lg:pt-0">
-                <div>
-                  <div className="flex items-end justify-between">
-                    <h4 className="font-body font-semibold uppercase text-black">
-                      HTML & CSS
-                    </h4>
-                    <h3 className="font-body text-3xl font-bold text-primary">
-                      85%
-                    </h3>
+                {skills.map((item) => {
+                  return(
+                    <div className="pt-6">
+                    <div className="flex items-end justify-between">
+                      <h4 className="font-body font-semibold uppercase text-black">
+                        {item.skill_name}
+                      </h4>
+                      <h3 className="font-body text-3xl font-bold text-primary">
+                        {item.skill_perct}
+                      </h3>
+                    </div>
+                    <div className="mt-2 h-3 w-full rounded-full bg-lila">
+                      <div
+                        className="h-3 rounded-full bg-primary"
+                        style={{ width: item.skill_perct }}
+                      ></div>
+                    </div>
                   </div>
-                  <div className="mt-2 h-3 w-full rounded-full bg-lila">
-                    <div
-                      className="h-3 rounded-full bg-primary"
-                      style={{ width: "85%" }}
-                    ></div>
-                  </div>
-                </div>
+                  )
+                })}
+                
+                {/* 
                 <div className="pt-6">
                   <div className="flex items-end justify-between">
                     <h4 className="font-body font-semibold uppercase text-black">
@@ -286,7 +300,7 @@ export default function Home({ blog, profile, social }) {
                       style={{ width: "91%" }}
                     ></div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -670,11 +684,15 @@ export async function getServerSideProps(context) {
   const socialQuery = `*[_type == "social"][0]`;
   const social = await client.fetch(socialQuery);
 
+  const skillsQuery = `*[_type == "skills"]`;
+  const skills = await client.fetch(skillsQuery);
+
   return {
     props: {
       blog,
       profile,
-      social
+      social,
+      skills
     },
   };
 }
