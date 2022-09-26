@@ -1930,6 +1930,11 @@ html {
     opacity: .5
 }
 
+.blogBodyContent  figure>img {
+    display: none;
+    
+  }
+
 @media (min-width:640px) {
     .sm\:ml-2 {
         margin-left: .5rem

@@ -36,7 +36,7 @@ const NavBar = (col) => {
               </li>
 
               <li className="group pl-6 animate-beat">
-                <a href="/#portfolio">
+                <a href="/#project">
                   <span className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">
                     Projects
                   </span>

@@ -2,11 +2,12 @@
 import createSchema from 'part:@sanity/base/schema-creator'
 
 // Import created schema
-import blog from './blog'
-import profile from './profile'
-import socialhandles from './socialhandles'
-import skills from './skills'
-import contactForm from './contactForm'
+import blog from './schema_components/blog'
+import profile from './schema_components/profile'
+import socialhandles from './schema_components/socialhandles'
+import skills from './schema_components/skills'
+import contactForm from './schema_components/contactForm'
+import projects from './schema_components/projects'
 
 
 // Then import schema types from any plugins that might expose them
@@ -25,6 +26,7 @@ export default createSchema({
     profile,
     socialhandles,
     skills,
-    contactForm
+    contactForm,
+    projects
   ]),
 })

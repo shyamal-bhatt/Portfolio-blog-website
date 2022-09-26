@@ -44,7 +44,7 @@ export default function Home({ blog, profile, social, skills }) {
 
         <title>{profile.title}</title>
 
-        <meta property="og:title" content="Homepage | Atom Template" />
+        <meta property="og:title" content="Shyamal | Data Analyst" />
 
         <meta property="og:locale" content="en_US" />
 
@@ -85,6 +85,7 @@ export default function Home({ blog, profile, social, skills }) {
           href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Raleway:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
+
         {/* social media icons from here. */}
         <link
           href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
@@ -140,7 +141,7 @@ export default function Home({ blog, profile, social, skills }) {
                 </div>
                 {/* ********* My Name ********* */}
                 <div className="pt-8 sm:pt-10 lg:pl-8 lg:pt-0">
-                  <h1 className="text-center font-header text-4xl text-white sm:text-left sm:text-5xl md:text-6xl">
+                  <h1 className=" text-center font-header text-4xl text-white sm:text-left sm:text-5xl md:text-6xl">
                     Hello, I'm {profile.name} !
                   </h1>
                   <div className="flex flex-col justify-center pt-3 sm:flex-row sm:pt-5 lg:justify-start ">
@@ -431,16 +432,37 @@ export default function Home({ blog, profile, social, skills }) {
             </div>
           </div>
           {/* Portfolio */}
-          <div className="container py-16 md:py-20" id="portfolio">
+          <div className="container py-16 md:py-20" id="project">
             <h2 className="text-center font-header text-4xl font-semibold uppercase text-primary sm:text-5xl lg:text-6xl">
-              Check out my Portfolio
+              My Projects
             </h2>
             <h3 className="pt-6 text-center font-header text-xl font-medium text-black sm:text-2xl lg:text-3xl">
               Here's what I have done with the past
             </h3>
 
             <div className="mx-auto grid w-full grid-cols-1 gap-8 pt-12 sm:w-3/4 md:gap-10 lg:w-full lg:grid-cols-2">
-              <a
+                  <article className="relative rounded-lg shadow-xl bg-white p-16">
+                    <h3 className="text-gray-800 text-3xl font-bold mb-2 hover:text-red-700">
+                      Project title
+                    </h3>
+                    <div className="text-gray-500 text-xs space-x-4">
+                      <span>
+                        <strong className="font-bold">Finished on</strong>:
+                      </span>
+
+                      <span>
+                        <strong className="font-bold">Type</strong>:
+                      </span>
+                      
+                      <p className="my-6 text-lg text-gray-700 leading-relaxed">
+                        Project Description
+                      </p>
+                      <a className="text-red-500 font-bold hover:underline hover:text-red-400"> Project Link</a>
+                      <span></span>
+                    </div>
+                  </article>
+              
+              {/* <a
                 href="/"
                 className="mx-auto transform transition-all hover:scale-105 md:mx-0"
               >
@@ -479,7 +501,7 @@ export default function Home({ blog, profile, social, skills }) {
                   className="w-full shadow"
                   alt="portfolio image"
                 />
-              </a>
+              </a> */}
             </div>
           </div>
 

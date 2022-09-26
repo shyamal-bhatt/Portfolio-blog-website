@@ -2,7 +2,7 @@
 import Head from "next/head";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
-import SyntaxHighlighter from 'react-syntax-highlighter';
+import SyntaxHighlighter from "react-syntax-highlighter";
 
 // Sanity Requirements
 import { createClient } from "next-sanity";
@@ -15,15 +15,18 @@ import moment from "moment";
 const BlockContent = require("@sanity/block-content-to-react");
 
 const serializers = {
-
   types: {
-    code: ({node = {}}) => {
-      const {code, language} = node
-      if(!code){
-        return null
+    code: ({ node = {} }) => {
+      const { code, language } = node;
+      if (!code) {
+        return null;
       }
 
-      return <SyntaxHighlighter language={language || 'text'}>{code}</SyntaxHighlighter>
+      return (
+        <SyntaxHighlighter language={language || "text"}>
+          {code}
+        </SyntaxHighlighter>
+      );
     },
   },
 };
@@ -123,6 +126,7 @@ const Post = ({ blog, profile, social }) => {
         />
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+
       </Head>
 
       <div id="main" class="relative">
@@ -154,13 +158,13 @@ const Post = ({ blog, profile, social }) => {
                   </div>
                 </div>
                 {/* *************** Blog Content *************** */}
-                <div className="prose max-w-none pt-8">
+                <div className="prose max-w-none pt-8 " id="blogBodyContent" style={{}}>
                   <BlockContent
                     blocks={blog.content}
-                    imageOptions={{w: 320, h: 240, fit: 'max'}}
+                    imageOptions={{ w: 320, h: 240, fit: "max" }}
                     serializers={serializers}
-                    projectId = "4jggrkm3"
-                    dataset = "production"
+                    projectId="4jggrkm3"
+                    dataset="production"
                   />
                 </div>
 
@@ -231,7 +235,7 @@ const Post = ({ blog, profile, social }) => {
                       <a href={social.linkedin} className="pl-4">
                         <i className="bx bxl-linkedin text-2xl text-primary hover:text-yellow"></i>
                       </a>
-                      <a href={"mailto:"+social.gmail} className="pl-4">
+                      <a href={"mailto:" + social.gmail} className="pl-4">
                         <i className="bx bxl-gmail text-2xl text-primary hover:text-yellow"></i>
                       </a>
                     </div>
