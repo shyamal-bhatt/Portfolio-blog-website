@@ -12,16 +12,67 @@ import PortableText from "react-portable-text";
 // miscellaneous
 import moment from "moment";
 
-const BlockContent = require("@sanity/block-content-to-react");
+// Exp imports
+import { PortableText as PortableTextReact } from "@portabletext/react";
+// import {imageUrlBuilder} from '@sanity/image-url'
+import { getImageDimensions } from "@sanity/asset-utils";
 
-const serializers = {
+// const BlockContent = require("@sanity/block-content-to-react");
+
+// const serializers = {
+//   types: {
+//     code: ({ node = {} }) => {
+//       const { code, language } = node;
+//       if (!code) {
+//         return null;
+//       }
+
+//       return (
+//         <SyntaxHighlighter language={language || "text"}>
+//           {code}
+//         </SyntaxHighlighter>
+//       );
+//     },
+//   },
+// };
+const myConfiguredSanityClient = createClient({
+  projectId: "4jggrkm3",
+  dataset: "production",
+  useCdn: false,
+});
+const builder = imageUrlBuilder(myConfiguredSanityClient);
+
+const SampleImageComponent = ({ value, isInline }) => {
+  // console.log(value)
+  // console.log(isInline)
+  const { width, height } = getImageDimensions(value);
+  // console.log(width)
+  // console.log(height)
+  return (
+    <img
+      src={builder.image(value).url()}
+      alt={value.alt || " "}
+      loading="lazy"
+      style={{
+        // Display alongside text if image appears inside a block text span
+        display: isInline ? "inline-block" : "block",
+
+        marginLeft: "auto",
+        marginRight: "auto",
+        width: "50%",
+
+        // Avoid jumping around with aspect-ratio CSS property
+        aspectRatio: width / height,
+      }}
+    />
+  );
+};
+
+const myPortableTextComponents = {
   types: {
-    code: ({ node = {} }) => {
-      const { code, language } = node;
-      if (!code) {
-        return null;
-      }
-
+    image: SampleImageComponent,
+    code: (node) => {
+      const { code, language } = node.value;
       return (
         <SyntaxHighlighter language={language || "text"}>
           {code}
@@ -126,10 +177,9 @@ const Post = ({ blog, profile, social }) => {
         />
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
-
       </Head>
 
-      <div id="main" class="relative">
+      <div id="main" className="relative">
         <div>
           <NavBar backgroundColor="#4a389c" />
           <div>
@@ -158,13 +208,21 @@ const Post = ({ blog, profile, social }) => {
                   </div>
                 </div>
                 {/* *************** Blog Content *************** */}
-                <div className="prose max-w-none pt-8 " id="blogBodyContent" style={{}}>
-                  <BlockContent
+                <div
+                  className="prose max-w-none pt-8 "
+                  id="blogBodyContent"
+                  style={{}}
+                >
+                  {/* <BlockContent
                     blocks={blog.content}
                     imageOptions={{ w: 320, h: 240, fit: "max" }}
                     serializers={serializers}
                     projectId="4jggrkm3"
                     dataset="production"
+                  /> */}
+                  <PortableTextReact
+                    value={blog.content}
+                    components={myPortableTextComponents}
                   />
                 </div>
 
