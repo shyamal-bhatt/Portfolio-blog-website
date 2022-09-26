@@ -552,7 +552,7 @@ export default function Home({ blog, profile, social, skills }) {
               </p>
             </div>
 
-            <form className="mx-auto w-full pt-10 sm:w-3/4" name="contact" method="POST" data-netlify="true" onSubmit="submit">
+            <form className="mx-auto w-full pt-10 sm:w-3/4" name="contact" method="POST">
               <div className="flex flex-col md:flex-row">
                 <input
                   className="mr-3 w-full rounded border-grey-50 px-4 py-3 font-body text-black md:w-1/2 lg:mr-5"
@@ -581,9 +581,7 @@ export default function Home({ blog, profile, social, skills }) {
                 rows="10"
                 required
               ></textarea>
-              <button className="mt-6 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
-                type="submit"
-              >
+              <button type="submit" className="mt-6 flex items-center justify-center rounded bg-violet-700 px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20">
                 Send
                 <i className="bx bx-chevron-right relative -right-2 text-3xl"></i>
               </button>
