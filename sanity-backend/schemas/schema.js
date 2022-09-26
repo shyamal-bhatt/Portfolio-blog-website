@@ -6,6 +6,7 @@ import blog from './blog'
 import profile from './profile'
 import socialhandles from './socialhandles'
 import skills from './skills'
+import contactForm from './contactForm'
 
 
 // Then import schema types from any plugins that might expose them
@@ -23,6 +24,7 @@ export default createSchema({
     blog, 
     profile,
     socialhandles,
-    skills
+    skills,
+    contactForm
   ]),
 })

@@ -13,7 +13,6 @@ import Link from "next/link";
 import PortableText from "react-portable-text";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-// import ButtonMailto from "../components/buttonMailto";
 
 // CSS for Home page
 // import styles from "../styles/Home.module.css";
@@ -23,7 +22,6 @@ import { createClient } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
 
 export default function Home({ blog, profile, social, skills }) {
-
   const myConfiguredSanityClient = createClient({
     projectId: "4jggrkm3",
     dataset: "production",
@@ -116,7 +114,6 @@ export default function Home({ blog, profile, social, skills }) {
 
       {/* ==================================================== */}
       <div id="main" className="relative">
-
         <NavBar />
 
         {/* Info section */}
@@ -130,7 +127,10 @@ export default function Home({ blog, profile, social, skills }) {
 
             <div className="container relative z-30 pt-20 pb-12 sm:pt-56 sm:pb-48 lg:pt-64 lg:pb-48">
               <div className="flex flex-col items-center justify-center lg:flex-row">
-                <div className="rounded-full border-8 border-primary shadow-xl" data-aos="fade-up">
+                <div
+                  className="rounded-full border-8 border-primary shadow-xl"
+                  data-aos="fade-up"
+                >
                   {/* ********* My image ************** */}
                   <img
                     src={builder.image(profile.myImage).url()}
@@ -153,25 +153,44 @@ export default function Home({ blog, profile, social, skills }) {
                       </div>
                     </div>
                     <div className="flex items-center justify-center pt-5 pl-2 sm:justify-start sm:pt-0">
-                      <a href={social.github} className="cursor-pointer" target="_blank">
+                      <a
+                        href={social.github}
+                        className="cursor-pointer"
+                        target="_blank"
+                      >
                         <i className="bx bxl-github text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
                       </a>
-                      <a href={social.medium} className="cursor-pointer pl-4" target="_blank">
+                      <a
+                        href={social.medium}
+                        className="cursor-pointer pl-4"
+                        target="_blank"
+                      >
                         <i className="bx bxl-medium text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
                       </a>
-                      <a href={social.linkedin} className="cursor-pointer pl-4" target="_blank">
+                      <a
+                        href={social.linkedin}
+                        className="cursor-pointer pl-4"
+                        target="_blank"
+                      >
                         <i className="bx bxl-linkedin text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
                       </a>
-                      <a href = {"mailto:"+social.gmail} className="cursor-pointer pl-4" target="_blank">
+                      <a
+                        href={"mailto:" + social.gmail}
+                        className="cursor-pointer pl-4"
+                        target="_blank"
+                      >
                         <i className="bx bxl-gmail text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
                       </a>
                     </div>
                   </div>
-                  <div className="buttons text-center  md:text-left" style={{paddingLeft: '4px'}}>
+                  <div
+                    className="buttons text-center  md:text-left"
+                    style={{ paddingLeft: "4px" }}
+                  >
                     <Link href={profile.resume}>
-                    <button className="hover:underline decoration-yellow-500 font-body text-lg font-semibold uppercase text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300">
-                      My Resume
-                    </button>
+                      <button className="hover:underline decoration-yellow-500 font-body text-lg font-semibold uppercase text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300">
+                        My Resume
+                      </button>
                     </Link>
                   </div>
                 </div>
@@ -224,7 +243,7 @@ export default function Home({ blog, profile, social, skills }) {
                     <a href={social.linkedin} className="pl-4">
                       <i className="bx bxl-linkedin text-2xl text-primary hover:text-yellow"></i>
                     </a>
-                    <a href={"mailto:"+social.gmail} className="pl-4">
+                    <a href={"mailto:" + social.gmail} className="pl-4">
                       <i className="bx bxl-gmail text-2xl text-primary hover:text-yellow"></i>
                     </a>
                   </div>
@@ -232,75 +251,25 @@ export default function Home({ blog, profile, social, skills }) {
               </div>
               <div className="w-full pl-0 pt-10 sm:w-3/4 lg:w-2/5 lg:pl-12 lg:pt-0">
                 {skills.map((item) => {
-                  return(
+                  return (
                     <div className="pt-6">
-                    <div className="flex items-end justify-between">
-                      <h4 className="font-body font-semibold uppercase text-black">
-                        {item.skill_name}
-                      </h4>
-                      <h3 className="font-body text-3xl font-bold text-primary">
-                        {item.skill_perct}
-                      </h3>
+                      <div className="flex items-end justify-between">
+                        <h4 className="font-body font-semibold uppercase text-black">
+                          {item.skill_name}
+                        </h4>
+                        <h3 className="font-body text-3xl font-bold text-primary">
+                          {item.skill_perct}
+                        </h3>
+                      </div>
+                      <div className="mt-2 h-3 w-full rounded-full bg-lila">
+                        <div
+                          className="h-3 rounded-full bg-primary"
+                          style={{ width: item.skill_perct }}
+                        ></div>
+                      </div>
                     </div>
-                    <div className="mt-2 h-3 w-full rounded-full bg-lila">
-                      <div
-                        className="h-3 rounded-full bg-primary"
-                        style={{ width: item.skill_perct }}
-                      ></div>
-                    </div>
-                  </div>
-                  )
+                  );
                 })}
-                
-                {/* 
-                <div className="pt-6">
-                  <div className="flex items-end justify-between">
-                    <h4 className="font-body font-semibold uppercase text-black">
-                      Python
-                    </h4>
-                    <h3 className="font-body text-3xl font-bold text-primary">
-                      70%
-                    </h3>
-                  </div>
-                  <div className="mt-2 h-3 w-full rounded-full bg-lila">
-                    <div
-                      className="h-3 rounded-full bg-primary"
-                      style={{ width: "70%" }}
-                    ></div>
-                  </div>
-                </div>
-                <div className="pt-6">
-                  <div className="flex items-end justify-between">
-                    <h4 className="font-body font-semibold uppercase text-black">
-                      Javascript
-                    </h4>
-                    <h3 className="font-body text-3xl font-bold text-primary">
-                      98%
-                    </h3>
-                  </div>
-                  <div className="mt-2 h-3 w-full rounded-full bg-lila">
-                    <div
-                      className="h-3 rounded-full bg-primary"
-                      style={{ width: "98%" }}
-                    ></div>
-                  </div>
-                </div>
-                <div className="pt-6">
-                  <div className="flex items-end justify-between">
-                    <h4 className="font-body font-semibold uppercase text-black">
-                      Figma
-                    </h4>
-                    <h3 className="font-body text-3xl font-bold text-primary">
-                      91%
-                    </h3>
-                  </div>
-                  <div className="mt-2 h-3 w-full rounded-full bg-lila">
-                    <div
-                      className="h-3 rounded-full bg-primary"
-                      style={{ width: "91%" }}
-                    ></div>
-                  </div>
-                </div> */}
               </div>
             </div>
           </div>
@@ -461,7 +430,7 @@ export default function Home({ blog, profile, social, skills }) {
               </div>
             </div>
           </div>
-{/* Portfolio */}
+          {/* Portfolio */}
           <div className="container py-16 md:py-20" id="portfolio">
             <h2 className="text-center font-header text-4xl font-semibold uppercase text-primary sm:text-5xl lg:text-6xl">
               Check out my Portfolio
@@ -582,33 +551,44 @@ export default function Home({ blog, profile, social, skills }) {
                 lobortis fermentum accumsan.
               </p>
             </div>
-            <form className="mx-auto w-full pt-10 sm:w-3/4">
+
+            <form className="mx-auto w-full pt-10 sm:w-3/4" name="contact" method="POST" data-netlify="true" onSubmit="submit">
               <div className="flex flex-col md:flex-row">
                 <input
                   className="mr-3 w-full rounded border-grey-50 px-4 py-3 font-body text-black md:w-1/2 lg:mr-5"
                   placeholder="Name"
                   type="text"
                   id="name"
+                  name="name"
+                  required
                 />
                 <input
                   className="mt-6 w-full rounded border-grey-50 px-4 py-3 font-body text-black md:mt-0 md:ml-3 md:w-1/2 lg:ml-5"
                   placeholder="Email"
-                  type="text"
+                  type="email"
                   id="email"
+                  name="email"
+                  required
+                  minlength="3"
                 />
               </div>
               <textarea
                 className="mt-6 w-full rounded border-grey-50 px-4 py-3 font-body text-black md:mt-8"
                 placeholder="Message"
                 id="message"
+                name="message"
                 cols="30"
                 rows="10"
+                required
               ></textarea>
-              <button className="mt-6 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20">
+              <button className="mt-6 flex items-center justify-center rounded bg-primary px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
+                type="submit"
+              >
                 Send
                 <i className="bx bx-chevron-right relative -right-2 text-3xl"></i>
               </button>
             </form>
+
             <div className="flex flex-col pt-16 lg:flex-row justify-center">
               <div className="w-full border-l-2 border-t-2 border-r-2 border-b-2 border-grey-60 px-6 py-6 sm:py-8 lg:w-1/3 lg:border-l-2 lg:border-t-2">
                 <div className="flex items-center">
@@ -663,7 +643,7 @@ export default function Home({ blog, profile, social, skills }) {
           </button>
         </div>
 
-        <Footer socialLinks = {social}/>
+        <Footer socialLinks={social} />
       </div>
     </>
   );
@@ -675,6 +655,7 @@ export async function getServerSideProps(context) {
     dataset: "production",
     useCdn: false,
   });
+
   const query = `*[_type == "blog"][0...3]`;
   const blog = await client.fetch(query);
 
@@ -692,7 +673,7 @@ export async function getServerSideProps(context) {
       blog,
       profile,
       social,
-      skills
+      skills,
     },
   };
 }
