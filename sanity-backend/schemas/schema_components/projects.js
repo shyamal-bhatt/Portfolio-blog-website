@@ -10,17 +10,6 @@ export default {
       type: "string",
     },
 
-    // Finished On
-    {
-      title: "Finished On Date",
-      name: "project_date",
-      type: "date",
-      options: {
-        dateFormat: "YYYY-MMMM-DD",
-        calendarTodayLabel: "Today",
-      },
-    },
-
     // Project Type
     {
       title: "Project Type",

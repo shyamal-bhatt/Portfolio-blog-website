@@ -22,3 +22,27 @@ function backToTop() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 }
+
+
+// Nav Bar for Mobile
+// Toggel Open 
+document.getElementById("toggel").addEventListener("click", function(){
+  document.getElementById("menuMobile").classList.toggle("pointer-events-none");
+  document.getElementById("menuMobile").classList.toggle("pointer-events-auto");
+
+  document.getElementById("menuMobile").classList.toggle("opacity-0");
+  document.getElementById("menuMobile").classList.toggle("opacity-100");
+})
+// Toggel Close
+document.getElementById("toggelClose").addEventListener("click", function(){
+  document.getElementById("menuMobile").classList.toggle("pointer-events-none");
+  document.getElementById("menuMobile").classList.toggle("pointer-events-auto");
+
+  document.getElementById("menuMobile").classList.toggle("opacity-0");
+  document.getElementById("menuMobile").classList.toggle("opacity-100");
+})
+
+// Scroll Element into view Mobile
+function intoView(element){
+  document.getElementById(element).scrollIntoView();
+}

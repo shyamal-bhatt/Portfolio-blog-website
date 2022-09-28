@@ -1,5 +1,5 @@
 import React from "react";
-
+import Link from "next/link";
 const Footer = (socialLinks) => {
   return (
     <>
@@ -26,13 +26,15 @@ const Footer = (socialLinks) => {
             >
               <i className="bx bxl-linkedin text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
             </a>
+
+          <Link href={"mailto:"+socialLinks.gmail}>
             <a
-              href={"mailto:"+socialLinks.gmail}
               className="cursor-pointer pl-4"
               target="_blank"
             >
               <i className="bx bxl-gmail text-2xl text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover:text-yellow"></i>
             </a>
+          </Link>
           </div>
         </div>
       </div>

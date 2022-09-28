@@ -6,7 +6,6 @@ import blog from './schema_components/blog'
 import profile from './schema_components/profile'
 import socialhandles from './schema_components/socialhandles'
 import skills from './schema_components/skills'
-import contactForm from './schema_components/contactForm'
 import projects from './schema_components/projects'
 
 
@@ -26,7 +25,6 @@ export default createSchema({
     profile,
     socialhandles,
     skills,
-    contactForm,
     projects
   ]),
 })

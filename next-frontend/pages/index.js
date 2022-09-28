@@ -7,12 +7,15 @@
 // #070e18
 
 // Next js compenents
+import React, {useRef} from "react";
 import Head from "next/head";
 import Script from "next/script";
 import Link from "next/link";
 import PortableText from "react-portable-text";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+
+import emailjs from '@emailjs/browser';
 
 // CSS for Home page
 // import styles from "../styles/Home.module.css";
@@ -21,7 +24,7 @@ import Footer from "../components/Footer";
 import { createClient } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
 
-export default function Home({ blog, profile, social, skills }) {
+export default function Home({ blog, profile, social, skills, project }) {
   const myConfiguredSanityClient = createClient({
     projectId: "4jggrkm3",
     dataset: "production",
@@ -29,6 +32,19 @@ export default function Home({ blog, profile, social, skills }) {
   });
   const builder = imageUrlBuilder(myConfiguredSanityClient);
 
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_liuhnys', 'template_0dtw7cb', e.target, 'ObwCKoPpDDfr5ocLJ')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+      e.target.reset()
+  };
   return (
     <>
       <Script src="/assets//js/main.js"></Script>
@@ -276,232 +292,45 @@ export default function Home({ blog, profile, social, skills }) {
           </div>
           {/* About Section ends */}
 
-          <div className="container py-16 md:py-20" id="services">
-            <h2 className="text-center font-header text-4xl font-semibold uppercase text-primary sm:text-5xl lg:text-6xl">
-              Here's what I'm good at
-            </h2>
-            <h3 className="pt-6 text-center font-header text-xl font-medium text-black sm:text-2xl lg:text-3xl">
-              These are the services I offer
-            </h3>
-
-            <div className="grid grid-cols-1 gap-6 pt-10 sm:grid-cols-2 md:gap-10 md:pt-12 lg:grid-cols-3">
-              <div className="group rounded px-8 py-12 shadow hover:bg-primary">
-                <div className="mx-auto h-24 w-24 text-center xl:h-28 xl:w-28">
-                  <div className="hidden group-hover:block">
-                    <img
-                      src="/assets//img/icon-development-white.svg"
-                      alt="development icon"
-                    />
-                  </div>
-                  <div className="block group-hover:hidden">
-                    <img
-                      src="/assets//img/icon-development-black.svg"
-                      alt="development icon"
-                    />
-                  </div>
-                </div>
-                <div className="text-center">
-                  <h3 className="pt-8 text-lg font-semibold uppercase text-primary group-hover:text-yellow lg:text-xl">
-                    WEB DEVELOPMENT
-                  </h3>
-                  <p className="text-grey pt-4 text-sm group-hover:text-white md:text-base">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  </p>
-                </div>
-              </div>
-              <div className="group rounded px-8 py-12 shadow hover:bg-primary">
-                <div className="mx-auto h-24 w-24 text-center xl:h-28 xl:w-28">
-                  <div className="hidden group-hover:block">
-                    <img
-                      src="/assets//img/icon-content-white.svg"
-                      alt="content marketing icon"
-                    />
-                  </div>
-                  <div className="block group-hover:hidden">
-                    <img
-                      src="/assets//img/icon-content-black.svg"
-                      alt="content marketing icon"
-                    />
-                  </div>
-                </div>
-                <div className="text-center">
-                  <h3 className="pt-8 text-lg font-semibold uppercase text-primary group-hover:text-yellow lg:text-xl">
-                    Technical Writing
-                  </h3>
-                  <p className="text-grey pt-4 text-sm group-hover:text-white md:text-base">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  </p>
-                </div>
-              </div>
-              <div className="group rounded px-8 py-12 shadow hover:bg-primary">
-                <div className="mx-auto h-24 w-24 text-center xl:h-28 xl:w-28">
-                  <div className="hidden group-hover:block">
-                    <img
-                      src="/assets//img/icon-mobile-white.svg"
-                      alt="Mobile Application icon"
-                    />
-                  </div>
-                  <div className="block group-hover:hidden">
-                    <img
-                      src="/assets//img/icon-mobile-black.svg"
-                      alt="Mobile Application icon"
-                    />
-                  </div>
-                </div>
-                <div className="text-center">
-                  <h3 className="pt-8 text-lg font-semibold uppercase text-primary group-hover:text-yellow lg:text-xl">
-                    Mobile Development
-                  </h3>
-                  <p className="text-grey pt-4 text-sm group-hover:text-white md:text-base">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  </p>
-                </div>
-              </div>
-              <div className="group rounded px-8 py-12 shadow hover:bg-primary">
-                <div className="mx-auto h-24 w-24 text-center xl:h-28 xl:w-28">
-                  <div className="hidden group-hover:block">
-                    <img
-                      src="/assets//img/icon-email-white.svg"
-                      alt="Email Marketing icon"
-                    />
-                  </div>
-                  <div className="block group-hover:hidden">
-                    <img
-                      src="/assets//img/icon-email-black.svg"
-                      alt="Email Marketing icon"
-                    />
-                  </div>
-                </div>
-                <div className="text-center">
-                  <h3 className="pt-8 text-lg font-semibold uppercase text-primary group-hover:text-yellow lg:text-xl">
-                    Email Development
-                  </h3>
-                  <p className="text-grey pt-4 text-sm group-hover:text-white md:text-base">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  </p>
-                </div>
-              </div>
-              <div className="group rounded px-8 py-12 shadow hover:bg-primary">
-                <div className="mx-auto h-24 w-24 text-center xl:h-28 xl:w-28">
-                  <div className="hidden group-hover:block">
-                    <img
-                      src="/assets//img/icon-design-white.svg"
-                      alt="Theme Design icon"
-                    />
-                  </div>
-                  <div className="block group-hover:hidden">
-                    <img
-                      src="/assets//img/icon-design-black.svg"
-                      alt="Theme Design icon"
-                    />
-                  </div>
-                </div>
-                <div className="text-center">
-                  <h3 className="pt-8 text-lg font-semibold uppercase text-primary group-hover:text-yellow lg:text-xl">
-                    Graphic Design
-                  </h3>
-                  <p className="text-grey pt-4 text-sm group-hover:text-white md:text-base">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  </p>
-                </div>
-              </div>
-              <div className="group rounded px-8 py-12 shadow hover:bg-primary">
-                <div className="mx-auto h-24 w-24 text-center xl:h-28 xl:w-28">
-                  <div className="hidden group-hover:block">
-                    <img
-                      src="/assets//img/icon-graphics-white.svg"
-                      alt="Graphic Design icon"
-                    />
-                  </div>
-                  <div className="block group-hover:hidden">
-                    <img
-                      src="/assets//img/icon-graphics-black.svg"
-                      alt="Graphic Design icon"
-                    />
-                  </div>
-                </div>
-                <div className="text-center">
-                  <h3 className="pt-8 text-lg font-semibold uppercase text-primary group-hover:text-yellow lg:text-xl">
-                    Web Design
-                  </h3>
-                  <p className="text-grey pt-4 text-sm group-hover:text-white md:text-base">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* Portfolio */}
+          {/* Projects */}
           <div className="container py-16 md:py-20" id="project">
             <h2 className="text-center font-header text-4xl font-semibold uppercase text-primary sm:text-5xl lg:text-6xl">
               My Projects
             </h2>
             <h3 className="pt-6 text-center font-header text-xl font-medium text-black sm:text-2xl lg:text-3xl">
-              Here's what I have done with the past
+              Here's what I have done in the past
             </h3>
 
             <div className="mx-auto grid w-full grid-cols-1 gap-8 pt-12 sm:w-3/4 md:gap-10 lg:w-full lg:grid-cols-2">
+              {project.map((item) => {
+                return (
                   <article className="relative rounded-lg shadow-xl bg-white p-16">
                     <h3 className="text-gray-800 text-3xl font-bold mb-2 hover:text-red-700">
-                      Project title
+                      {item.project_title}
                     </h3>
                     <div className="text-gray-500 text-xs space-x-4">
                       <span>
-                        <strong className="font-bold">Finished on</strong>:
+                        <strong className="font-bold">Type</strong>:
+                        <span className="ml-1 px-1 border rounded bg-slate-200">{item.project_type}</span>
                       </span>
 
-                      <span>
-                        <strong className="font-bold">Type</strong>:
-                      </span>
-                      
-                      <p className="my-6 text-lg text-gray-700 leading-relaxed">
-                        Project Description
-                      </p>
-                      <a className="text-red-500 font-bold hover:underline hover:text-red-400"> Project Link</a>
+                      <div className="my-6 text-lg text-gray-700 leading-relaxed">
+                      <PortableText
+                      content={item.project_desc}
+                      projectId="4jggrkm3"
+                      dataset="production"
+                      />
+                      </div>
+                      <Link href={item.project_link}>
+                        <a className="text-violet-500 font-bold hover:underline hover:text-red-400" target="_blank">
+                          Project Link
+                        </a>
+                      </Link>
                       <span></span>
                     </div>
                   </article>
-              
-              {/* <a
-                href="/"
-                className="mx-auto transform transition-all hover:scale-105 md:mx-0"
-              >
-                <img
-                  src="/assets//img/portfolio-apple.jpeg"
-                  className="w-full shadow"
-                  alt="portfolio image"
-                />
-              </a>
-              <a
-                href="/"
-                className="mx-auto transform transition-all hover:scale-105 md:mx-0"
-              >
-                <img
-                  src="/assets//img/portfolio-stripe.jpeg"
-                  className="w-full shadow"
-                  alt="portfolio image"
-                />
-              </a>
-              <a
-                href="/"
-                className="mx-auto transform transition-all hover:scale-105 md:mx-0"
-              >
-                <img
-                  src="/assets//img/portfolio-fedex.jpeg"
-                  className="w-full shadow"
-                  alt="portfolio image"
-                />
-              </a>
-              <a
-                href="/"
-                className="mx-auto transform transition-all hover:scale-105 md:mx-0"
-              >
-                <img
-                  src="/assets//img/portfolio-microsoft.jpeg"
-                  className="w-full shadow"
-                  alt="portfolio image"
-                />
-              </a> */}
+                );
+              })}
             </div>
           </div>
 
@@ -574,7 +403,11 @@ export default function Home({ blog, profile, social, skills }) {
               </p>
             </div>
 
-            <form className="mx-auto w-full pt-10 sm:w-3/4" name="contact" method="POST">
+            <form
+              className="mx-auto w-full pt-10 sm:w-3/4"
+              ref={form} 
+              onSubmit={sendEmail}
+            >
               <div className="flex flex-col md:flex-row">
                 <input
                   className="mr-3 w-full rounded border-grey-50 px-4 py-3 font-body text-black md:w-1/2 lg:mr-5"
@@ -591,7 +424,7 @@ export default function Home({ blog, profile, social, skills }) {
                   id="email"
                   name="email"
                   required
-                  minlength="3"
+                  minLength="3"
                 />
               </div>
               <textarea
@@ -603,7 +436,10 @@ export default function Home({ blog, profile, social, skills }) {
                 rows="10"
                 required
               ></textarea>
-              <button type="submit" className="mt-6 flex items-center justify-center rounded bg-violet-700 px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20">
+              <button
+                type="submit"
+                className="mt-6 flex items-center justify-center rounded bg-violet-700 px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
+              >
                 Send
                 <i className="bx bx-chevron-right relative -right-2 text-3xl"></i>
               </button>
@@ -688,12 +524,16 @@ export async function getServerSideProps(context) {
   const skillsQuery = `*[_type == "skills"]`;
   const skills = await client.fetch(skillsQuery);
 
+  const projectQuery = `*[_type == "projects"][0...3]`;
+  const project = await client.fetch(projectQuery);
+
   return {
     props: {
       blog,
       profile,
       social,
       skills,
+      project,
     },
   };
 }
