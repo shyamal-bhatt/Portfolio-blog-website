@@ -42,7 +42,7 @@ const Blogs = ({ blog }) => {
         <Script src="/assets//js//main.js"></Script>
       </Head>
 
-        <NavBar backgroundColor = "#4a389c"/>
+        <NavBar backgroundColor = "#070e18"/>
         <div className="my-12" id="blog">
           <div className="container mx-auto py-16 md:py-20">
             <h2 className="text-center font-header text-4xl font-semibold uppercase text-primary sm:text-5xl lg:text-6xl">
@@ -51,7 +51,6 @@ const Blogs = ({ blog }) => {
             
             <div className="mx-auto grid w-full grid-cols-1 gap-6 pt-12 sm:w-3/4 lg:w-full  lg:grid-cols-2 xl:gap-10">
               {blog.map((item) => {
-                // appends the slug to the url
                 return (
                   <Link
                     key={item.slug.current}
@@ -60,8 +59,6 @@ const Blogs = ({ blog }) => {
                   >
                     <div className="transform transition-all hover:scale-105 md:mx-0">
                       <div
-                        // careating variable; fetching images from item object; if null set the deafult image.
-                        // builder is the sanity object defined above.
                         style={{
                           backgroundImage: `url(${
                             builder.image(item.image).width(200).url() ||
@@ -72,7 +69,7 @@ const Blogs = ({ blog }) => {
                       >
                         <span className="absolute inset-0 block bg-gradient-to-b from-blog-gradient-from to-blog-gradient-to bg-cover bg-center bg-no-repeat opacity-10 transition-opacity group-hover:opacity-50"></span>
                         {/* Change button css here. */}
-                        <span className="absolute right-0 bottom-0 mr-4 mb-4 block rounded-full border-2 bg-purple-700 border-purple-700 px-6 py-2 text-center font-body text-sm font-bold uppercase text-purple-200 md:text-base cursor-pointer">
+                        <span className="absolute right-0 bottom-0 mr-4 mb-4 block rounded-full border-2 bg-slate-800 border-gray-400 px-6 py-2 text-center font-body text-sm font-bold uppercase text-purple-200 md:text-base cursor-pointer">
                           Read More
                         </span>
                       </div>

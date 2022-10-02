@@ -5,9 +5,11 @@
 // #950740 : rgb(149, 7, 80)
 // #C3073F : rgb(195, 7, 63)
 // #070e18
+// rgba(7,14,24,1)
+// 159 202 215
 
 // Next js compenents
-import React, {useRef} from "react";
+import React, { useRef } from "react";
 import Head from "next/head";
 import Script from "next/script";
 import Link from "next/link";
@@ -15,10 +17,7 @@ import PortableText from "react-portable-text";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 
-import emailjs from '@emailjs/browser';
-
-// CSS for Home page
-// import styles from "../styles/Home.module.css";
+import emailjs from "@emailjs/browser";
 
 // Sanity associated modules
 import { createClient } from "next-sanity";
@@ -37,13 +36,22 @@ export default function Home({ blog, profile, social, skills, project }) {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm('service_liuhnys', 'template_0dtw7cb', form.current, 'ObwCKoPpDDfr5ocLJ')
-      .then((result) => {
+    emailjs
+      .sendForm(
+        "service_liuhnys",
+        "template_0dtw7cb",
+        form.current,
+        "ObwCKoPpDDfr5ocLJ"
+      )
+      .then(
+        (result) => {
           console.log(result.text);
-      }, (error) => {
+        },
+        (error) => {
           console.log(error.text);
-      });
-      e.target.reset()
+        }
+      );
+    e.target.reset();
   };
   return (
     <>
@@ -146,7 +154,6 @@ export default function Home({ blog, profile, social, skills, project }) {
               <div className="flex flex-col items-center justify-center lg:flex-row">
                 <div
                   className="rounded-full border-8 border-primary shadow-xl"
-                  data-aos="fade-up"
                 >
                   {/* ********* My image ************** */}
                   <img
@@ -227,18 +234,9 @@ export default function Home({ blog, profile, social, skills, project }) {
                 </h4>
                 <div className="pt-6 font-body leading-relaxed text-grey-20">
                   <PortableText
-                    // Pass in block content straight from Sanity.io
                     content={profile.desc}
                     projectId="4jggrkm3"
                     dataset="production"
-                    // Optionally override marks, decorators, blocks, etc. in a flat
-                    // structure without doing any gymnastics
-                    serializers={{
-                      h1: (props) => <h1 style={{ color: "red" }} {...props} />,
-                      li: ({ children }) => (
-                        <li className="special-list-item">{children}</li>
-                      ),
-                    }}
                   />
                 </div>
                 <div className="flex flex-col justify-center pt-6 sm:flex-row lg:justify-start">
@@ -305,24 +303,29 @@ export default function Home({ blog, profile, social, skills, project }) {
               {project.map((item) => {
                 return (
                   <article className="relative rounded-lg shadow-xl bg-white p-16">
-                    <h3 className="text-gray-800 text-3xl font-bold mb-2 hover:text-red-700">
+                    <h3 className="text-gray-800 text-3xl font-bold mb-2">
                       {item.project_title}
                     </h3>
                     <div className="text-gray-500 text-xs space-x-4">
                       <span>
                         <strong className="font-bold">Type</strong>:
-                        <span className="ml-1 px-1 border rounded bg-slate-200">{item.project_type}</span>
+                        <span className="ml-1 px-1 border rounded bg-slate-200">
+                          {item.project_type}
+                        </span>
                       </span>
 
                       <div className="my-6 text-lg text-gray-700 leading-relaxed">
-                      <PortableText
-                      content={item.project_desc}
-                      projectId="4jggrkm3"
-                      dataset="production"
-                      />
+                        <PortableText
+                          content={item.project_desc}
+                          projectId="4jggrkm3"
+                          dataset="production"
+                        />
                       </div>
                       <Link href={item.project_link}>
-                        <a className="text-violet-500 font-bold hover:underline hover:text-red-400" target="_blank">
+                        <a
+                          className="text-violet-500 font-bold hover:underline hover:text-red-400"
+                          target="_blank"
+                        >
                           Project Link
                         </a>
                       </Link>
@@ -389,7 +392,7 @@ export default function Home({ blog, profile, social, skills, project }) {
 
           <div className="container py-16 md:py-20" id="contact">
             <h2 className="text-center font-header text-4xl font-semibold uppercase text-primary sm:text-5xl lg:text-6xl">
-              Here's a contact form
+              drop a message here
             </h2>
             <h4 className="pt-6 text-center font-header text-xl font-medium text-black sm:text-2xl lg:text-3xl">
               Have Any Questions?
@@ -405,7 +408,7 @@ export default function Home({ blog, profile, social, skills, project }) {
 
             <form
               className="mx-auto w-full pt-10 sm:w-3/4"
-              ref={form} 
+              ref={form}
               onSubmit={sendEmail}
             >
               <div className="flex flex-col md:flex-row">
@@ -438,7 +441,7 @@ export default function Home({ blog, profile, social, skills, project }) {
               ></textarea>
               <button
                 type="submit"
-                className="mt-6 flex items-center justify-center rounded bg-violet-700 px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
+                className="mt-6 flex items-center justify-center rounded bg-[#070e18] px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20"
               >
                 Send
                 <i className="bx bx-chevron-right relative -right-2 text-3xl"></i>
@@ -478,7 +481,9 @@ export default function Home({ blog, profile, social, skills, project }) {
             type="button"
             data-mdb-ripple="true"
             data-mdb-ripple-color="light"
-            className="inline-block p-3 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5 delay-150 hover:-translate-y-1 hover:scale-110 animate-bounce"
+            className="inline-block p-3 bg-slate-800 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-gray-700
+             hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-salte-800 active:shadow-lg transition duration-150 
+             ease-in-out bottom-5 right-5 delay-150 hover:-translate-y-1 hover:scale-110 animate-bounce"
             id="btn-back-to-top"
             style={{ position: "fixed", display: "none" }}
           >

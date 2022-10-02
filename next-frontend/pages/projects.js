@@ -8,7 +8,6 @@ import Script from "next/script";
 import { createClient } from "next-sanity";
 
 const Projects = ({ project }) => {
-  console.log(project);
   return (
     <>
       <Head>
@@ -32,57 +31,58 @@ const Projects = ({ project }) => {
         <link rel="icon" type="image/png" href="/assets/img/SB.jfif" />
         <Script src="/assets//js//main.js"></Script>
       </Head>
+        <NavBar backgroundColor="#070e18" />
+      <div className="my-12 ">
+        <div
+          className="container mx-auto py-16 md:py-20"
+          id="project"
+          style={{ marginTop: "3rem" }}
+        >
+          <h2 className="text-center font-header text-4xl font-semibold uppercase text-primary sm:text-5xl lg:text-6xl">
+            Projects
+          </h2>
 
-      <NavBar backgroundColor="#4a389c" />
-      <div className="container py-16 md:py-20" id="project">
-        <h2 className="text-center font-header text-4xl font-semibold uppercase text-primary sm:text-5xl lg:text-6xl">
-          Projects
-        </h2>
+          <div className="mx-auto grid w-full grid-cols-1 gap-8 pt-12 sm:w-3/4 md:gap-10 lg:w-full lg:grid-cols-2">
+            {project.map((item) => {
+              return (
+                <>
+                  <article className="relative rounded-lg shadow-xl bg-white p-16 transform transition-all hover:scale-105 md:mx-0 hover:bg-slate-300">
+                    <h3 className="text-gray-800 text-3xl font-bold mb-2">
+                      {item.project_title}
+                    </h3>
+                    <div className="text-gray-500 text-xs space-x-4">
+                      <span>
+                        <strong className="font-bold">Type</strong>:&nbsp;
+                        <span className="ml-1 px-1 border rounded bg-slate-200">
+                          {item.project_type}
+                        </span>
+                      </span>
 
-        <div className="mx-auto grid w-full grid-cols-1 gap-8 pt-12 sm:w-3/4 md:gap-10 lg:w-full lg:grid-cols-2">
-          {project.map((item) => {
-            return (
-              <>
-                <article className="relative rounded-lg shadow-xl bg-white p-16">
-                  <h3 className="text-gray-800 text-3xl font-bold mb-2 hover:text-red-700">
-                    {item.project_title}
-                  </h3>
-                  <div className="text-gray-500 text-xs space-x-4">
-                    <span>
-                      <strong className="font-bold">Type</strong>:&nbsp;
-                      <span className="ml-1 px-1 border rounded bg-slate-200">{item.project_type}</span>
-                    </span>
-
-                    <div className="my-6 text-lg text-gray-700 leading-relaxed">
-                      <PortableText
-                        content={item.project_desc}
-                        projectId="4jggrkm3"
-                        dataset="production"
-                      />
+                      <div className="my-6 text-lg text-gray-700 leading-relaxed">
+                        <PortableText
+                          content={item.project_desc}
+                          projectId="4jggrkm3"
+                          dataset="production"
+                        />
+                      </div>
+                      <Link href={item.project_link}>
+                        <a
+                          className="text-red-500 font-bold hover:underline hover:text-red-400"
+                          target="_blank"
+                        >
+                          Project Link
+                        </a>
+                      </Link>
+                      <span></span>
                     </div>
-                    <Link href={item.project_link}>
-                      <a
-                        className="text-red-500 font-bold hover:underline hover:text-red-400"
-                        target="_blank"
-                      >
-                        Project Link
-                      </a>
-                    </Link>
-                    <span></span>
-                  </div>
-                </article>
-              </>
-            );
-          })}
+                  </article>
+                </>
+              );
+            })}
+          </div>
         </div>
       </div>
-      <div
-        className="fixed
-             inset-x-0
-             bottom-0"
-      >
-        <Footer />
-      </div>
+      <Footer />
     </>
   );
 };

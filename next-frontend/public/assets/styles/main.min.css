@@ -1385,8 +1385,8 @@ html {
 }
 
 .border-primary {
-    --tw-border-opacity: 1;
-    border-color: rgb(85 64 175/var(--tw-border-opacity))
+    --tw-border-opacity: 0.4;
+    border-color: rgb(159 202 215/var(--tw-border-opacity))
 }
 
 .border-grey-40 {
@@ -1411,7 +1411,7 @@ html {
 
 .bg-primary {
     --tw-bg-opacity: 1;
-    background-color: rgb(85 64 175/var(--tw-bg-opacity))
+    background-color: rgb(7 14 24/var(--tw-bg-opacity))
 }
 
 .bg-transparent {
@@ -1468,8 +1468,8 @@ html {
 }
 
 .from-hero-gradient-from {
-    --tw-gradient-from: rgba(85, 64, 174, 0.95);
-    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(85, 64, 174, 0))
+    --tw-gradient-from: rgba(7,14,24, 0.95);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(7,14,24, 0))
 }
 
 .from-blog-gradient-from {
@@ -1477,9 +1477,9 @@ html {
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, hsla(233, 4%, 58%, 0))
 }
 
-.to-hero-gradient-to {
+/* .to-hero-gradient-to {
     --tw-gradient-to: rgba(65, 47, 144, 0.93);
-}
+} */
 
 .to-blog-gradient-to {
     --tw-gradient-to: #222
@@ -1751,7 +1751,7 @@ html {
 
 .text-primary {
     --tw-text-opacity: 1;
-    color: rgb(85 64 175/var(--tw-text-opacity))
+    color: rgb(7 14 24/var(--tw-text-opacity))
 }
 
 .text-grey-10 {
