@@ -4,6 +4,7 @@ import NavBar from "../components/NavBar";
 import Head from "next/head";
 import Footer from "../components/Footer";
 import PortableText from "react-portable-text";
+import Script from "next/script";
 import { createClient } from "next-sanity";
 
 const Projects = ({ project }) => {
@@ -28,13 +29,14 @@ const Projects = ({ project }) => {
         />
 
         <title>Projects</title>
-        <link rel="icon" type="image/png" href="/assets/img/favicon.png" />
+        <link rel="icon" type="image/png" href="/assets/img/SB.jfif" />
+        <Script src="/assets//js//main.js"></Script>
       </Head>
 
       <NavBar backgroundColor="#4a389c" />
       <div className="container py-16 md:py-20" id="project">
         <h2 className="text-center font-header text-4xl font-semibold uppercase text-primary sm:text-5xl lg:text-6xl">
-          My Projects
+          Projects
         </h2>
 
         <div className="mx-auto grid w-full grid-cols-1 gap-8 pt-12 sm:w-3/4 md:gap-10 lg:w-full lg:grid-cols-2">

@@ -2,6 +2,7 @@
 import Head from "next/head";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
+import Script from "next/script";
 import SyntaxHighlighter from "react-syntax-highlighter";
 
 // Sanity Requirements
@@ -15,27 +16,8 @@ import getYouTubeID from "get-youtube-id";
 
 // Exp imports
 import { PortableText as PortableTextReact } from "@portabletext/react";
-// import {imageUrlBuilder} from '@sanity/image-url'
 import { getImageDimensions } from "@sanity/asset-utils";
 
-// const BlockContent = require("@sanity/block-content-to-react");
-
-// const serializers = {
-//   types: {
-//     code: ({ node = {} }) => {
-//       const { code, language } = node;
-//       if (!code) {
-//         return null;
-//       }
-
-//       return (
-//         <SyntaxHighlighter language={language || "text"}>
-//           {code}
-//         </SyntaxHighlighter>
-//       );
-//     },
-//   },
-// };
 const myConfiguredSanityClient = createClient({
   projectId: "4jggrkm3",
   dataset: "production",
@@ -44,11 +26,9 @@ const myConfiguredSanityClient = createClient({
 const builder = imageUrlBuilder(myConfiguredSanityClient);
 
 const SampleImageComponent = ({ value, isInline }) => {
-  // console.log(value)
-  // console.log(isInline)
+
   const { width, height } = getImageDimensions(value);
-  // console.log(width)
-  // console.log(height)
+
   return (
     <img
       src={builder.image(value).url()}
@@ -145,7 +125,7 @@ const Post = ({ blog, profile, social }) => {
           content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         />
 
-        <link rel="icon" type="image/png" href="/assets/img/favicon.png" />
+        <link rel="icon" type="image/png" href="/assets/img/SB.jfif" />
 
         <meta name="theme-color" content="#5540af" />
 
@@ -202,6 +182,7 @@ const Post = ({ blog, profile, social }) => {
         />
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+        <Script src="/assets//js//main.js"></Script>
       </Head>
 
       <div id="main" className="relative">
@@ -234,13 +215,6 @@ const Post = ({ blog, profile, social }) => {
                 </div>
                 {/* *************** Blog Content *************** */}
                 <div className="prose max-w-none pt-8 " id="blogBodyContent">
-                  {/* <BlockContent
-                    blocks={blog.content}
-                    imageOptions={{ w: 320, h: 240, fit: "max" }}
-                    serializers={serializers}
-                    projectId="4jggrkm3"
-                    dataset="production"
-                  /> */}
                   {console.log(blog.content)}
                   <PortableTextReact
                     value={blog.content}

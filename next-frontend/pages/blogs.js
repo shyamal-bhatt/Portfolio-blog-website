@@ -3,6 +3,7 @@ import Link from "next/link";
 import NavBar from "../components/NavBar";
 import Head from "next/head";
 import Footer from "../components/Footer";
+import Script from "next/script";
 
 import imageUrlBuilder from "@sanity/image-url";
 import { createClient } from "next-sanity";
@@ -37,7 +38,8 @@ const Blogs = ({ blog }) => {
         />
 
         <title>Blogs</title>
-        <link rel="icon" type="image/png" href="/assets/img/favicon.png" />
+        <link rel="icon" type="image/png" href="/assets/img/SB.jfif" />
+        <Script src="/assets//js//main.js"></Script>
       </Head>
 
         <NavBar backgroundColor = "#4a389c"/>

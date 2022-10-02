@@ -73,7 +73,7 @@ export default function Home({ blog, profile, social, skills, project }) {
           content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         />
 
-        <link rel="icon" type="image/png" href="/assets//img/favicon.png" />
+        <link rel="icon" type="image/png" href="/assets//img/SB.jfif" />
 
         <meta name="theme-color" content="#5540af" />
 
