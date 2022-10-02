@@ -111,6 +111,11 @@ export default {
           name: 'code',
           title: 'Code',
           type: 'code'
+        },
+
+        // Youtube embed 
+        {
+          type: 'youtube'
         }
       ],
     },

@@ -37,7 +37,7 @@ export default function Home({ blog, profile, social, skills, project }) {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm('service_liuhnys', 'template_0dtw7cb', e.target, 'ObwCKoPpDDfr5ocLJ')
+    emailjs.sendForm('service_liuhnys', 'template_0dtw7cb', form.current, 'ObwCKoPpDDfr5ocLJ')
       .then((result) => {
           console.log(result.text);
       }, (error) => {
@@ -454,7 +454,7 @@ export default function Home({ blog, profile, social, skills, project }) {
                   </p>
                 </div>
                 <p className="pt-2 text-left font-body font-bold text-primary lg:text-lg">
-                  name@mydomain.com
+                  shyamalbhatt22@gmail.com
                 </p>
               </div>
               <div className="w-full border-l-2 border-t-0 border-r-2 border-b-2 border-grey-60 px-6 py-6 sm:py-8 lg:w-1/3 lg:border-l-0 lg:border-t-2">

@@ -7,7 +7,7 @@ import profile from './schema_components/profile'
 import socialhandles from './schema_components/socialhandles'
 import skills from './schema_components/skills'
 import projects from './schema_components/projects'
-
+import youtube from './schema_components/youtube'
 
 // Then import schema types from any plugins that might expose them
 import schemaTypes from 'all:part:@sanity/base/schema-type'
@@ -25,6 +25,7 @@ export default createSchema({
     profile,
     socialhandles,
     skills,
-    projects
+    projects,
+    youtube
   ]),
 })

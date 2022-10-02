@@ -11,6 +11,7 @@ import PortableText from "react-portable-text";
 
 // miscellaneous
 import moment from "moment";
+import getYouTubeID from "get-youtube-id";
 
 // Exp imports
 import { PortableText as PortableTextReact } from "@portabletext/react";
@@ -77,6 +78,30 @@ const myPortableTextComponents = {
         <SyntaxHighlighter language={language || "text"}>
           {code}
         </SyntaxHighlighter>
+      );
+    },
+
+    youtube: (yt) => {
+      console.log(yt);
+      const { url } = yt.value;
+      const id = getYouTubeID(url);
+      console.log(url);
+      console.log(id);
+
+      const yturl = `https://www.youtube.com/embed/${id}`;
+
+      return (
+        <div style={{overFlow: "hidden", paddingBottom: "56.25%", position: "relative", height: "0"}}>
+        <iframe
+          width="560"
+          height="315"
+          src= {yturl}
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          style={{left: "0", top: "0", height: "100%", width: "100%", position: "absolute"}}
+        ></iframe>
+        </div>
       );
     },
   },
@@ -208,11 +233,7 @@ const Post = ({ blog, profile, social }) => {
                   </div>
                 </div>
                 {/* *************** Blog Content *************** */}
-                <div
-                  className="prose max-w-none pt-8 "
-                  id="blogBodyContent"
-                  style={{}}
-                >
+                <div className="prose max-w-none pt-8 " id="blogBodyContent">
                   {/* <BlockContent
                     blocks={blog.content}
                     imageOptions={{ w: 320, h: 240, fit: "max" }}
