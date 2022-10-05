@@ -101,7 +101,7 @@ export async function getServerSideProps(context) {
     dataset: "production",
     useCdn: false,
   });
-  const query = `*[_type == "blog"]`;
+  const query = `*[_type == "blog"] | order(_createdAt desc)`;
   const blog = await client.fetch(query);
   return {
     props: {

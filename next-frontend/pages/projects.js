@@ -82,7 +82,13 @@ const Projects = ({ project }) => {
           </div>
         </div>
       </div>
+      <span
+      className="fixed
+      inset-x-0
+      bottom-0"
+      >
       <Footer />
+      </span>
     </>
   );
 };
@@ -96,7 +102,7 @@ export async function getServerSideProps(context) {
     useCdn: false,
   });
 
-  const projectQuery = `*[_type == "projects"]`;
+  const projectQuery = `*[_type == "projects"] | order(_createdAt desc)`;
   const project = await client.fetch(projectQuery);
 
   return {

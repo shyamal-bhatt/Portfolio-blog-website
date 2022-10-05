@@ -302,7 +302,7 @@ export default function Home({ blog, profile, social, skills, project }) {
             <div className="mx-auto grid w-full grid-cols-1 gap-8 pt-12 sm:w-3/4 md:gap-10 lg:w-full lg:grid-cols-2">
               {project.map((item) => {
                 return (
-                  <article className="relative rounded-lg shadow-xl bg-white p-16">
+                  <article className="relative rounded-lg shadow-xl bg-white p-16 transform transition-all hover:scale-105 md:mx-0 hover:bg-slate-300">
                     <h3 className="text-gray-800 text-3xl font-bold mb-2">
                       {item.project_title}
                     </h3>
@@ -370,7 +370,7 @@ export default function Home({ blog, profile, social, skills, project }) {
                           className="group relative h-72 bg-cover bg-center bg-no-repeat sm:h-84 lg:h-64 xl:h-72"
                         >
                           <span className="absolute inset-0 block bg-gradient-to-b from-blog-gradient-from to-blog-gradient-to bg-cover bg-center bg-no-repeat opacity-10 transition-opacity group-hover:opacity-50"></span>
-                          <span className="absolute right-0 bottom-0 mr-4 mb-4 block rounded-full border-2 border-white px-6 py-2 text-center font-body text-sm font-bold uppercase text-white md:text-base cursor-pointer">
+                          <span className="absolute right-0 bottom-0 mr-4 mb-4 block rounded-full border-2 bg-slate-800 border-gray-400 px-6 py-2 text-center font-body text-sm font-bold uppercase text-purple-200 md:text-base cursor-pointer">
                             Read More
                           </span>
                         </div>
@@ -413,7 +413,7 @@ export default function Home({ blog, profile, social, skills, project }) {
             >
               <div className="flex flex-col md:flex-row">
                 <input
-                  className="mr-3 w-full rounded border-grey-50 px-4 py-3 font-body text-black md:w-1/2 lg:mr-5"
+                  className="mr-3 w-full rounded border-slate-900 px-4 py-3 font-body text-black md:w-1/2 lg:mr-5"
                   placeholder="Name"
                   type="text"
                   id="name"
@@ -421,7 +421,7 @@ export default function Home({ blog, profile, social, skills, project }) {
                   required
                 />
                 <input
-                  className="mt-6 w-full rounded border-grey-50 px-4 py-3 font-body text-black md:mt-0 md:ml-3 md:w-1/2 lg:ml-5"
+                  className="mt-6 w-full rounded border-slate-900 px-4 py-3 font-body text-black md:mt-0 md:ml-3 md:w-1/2 lg:ml-5"
                   placeholder="Email"
                   type="email"
                   id="email"
@@ -431,7 +431,7 @@ export default function Home({ blog, profile, social, skills, project }) {
                 />
               </div>
               <textarea
-                className="mt-6 w-full rounded border-grey-50 px-4 py-3 font-body text-black md:mt-8"
+                className="mt-6 w-full rounded border-slate-900 px-4 py-3 font-body text-black md:mt-8"
                 placeholder="Message"
                 id="message"
                 name="message"
@@ -517,7 +517,7 @@ export async function getServerSideProps(context) {
     useCdn: false,
   });
 
-  const query = `*[_type == "blog"][0...3]`;
+  const query = `*[_type == "blog"] | order(_createdAt desc)[0...3]`;
   const blog = await client.fetch(query);
 
   const profileQuery = `*[_type == "profile"][0]`;
@@ -529,7 +529,7 @@ export async function getServerSideProps(context) {
   const skillsQuery = `*[_type == "skills"]`;
   const skills = await client.fetch(skillsQuery);
 
-  const projectQuery = `*[_type == "projects"][0...3]`;
+  const projectQuery = `*[_type == "projects"] | order(_createdAt desc)[0...2]`;
   const project = await client.fetch(projectQuery);
 
   return {

@@ -62,11 +62,8 @@ const myPortableTextComponents = {
     },
 
     youtube: (yt) => {
-      console.log(yt);
       const { url } = yt.value;
       const id = getYouTubeID(url);
-      console.log(url);
-      console.log(id);
 
       const yturl = `https://www.youtube.com/embed/${id}`;
 
@@ -187,7 +184,7 @@ const Post = ({ blog, profile, social }) => {
 
       <div id="main" className="relative">
         <div>
-          <NavBar backgroundColor="#4a389c" />
+          <NavBar backgroundColor="#070e18" />
           <div>
             <div className="container py-6 md:py-10">
               <div className="mx-auto max-w-4xl" style={{ marginTop: "7rem" }}>
