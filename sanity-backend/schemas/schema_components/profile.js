@@ -72,6 +72,19 @@ export default {
         name: 'jobRole',
         type: 'string'
         
+      },
+
+      // Name
+      { 
+        title: 'Email',
+        name: 'email',
+        type: 'string'
+      },
+
+      { 
+        title: 'Location',
+        name: 'location',
+        type: 'string'
       }
     ]
 }

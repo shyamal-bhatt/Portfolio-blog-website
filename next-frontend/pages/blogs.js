@@ -8,10 +8,10 @@ import Script from "next/script";
 import imageUrlBuilder from "@sanity/image-url";
 import { createClient } from "next-sanity";
 
-const Blogs = ({ blog }) => {
+const Blogs = ({ blog, sanityKey }) => {
   const myConfiguredSanityClient = createClient({
-    projectId: "4jggrkm3",
-    dataset: "production",
+    projectId: sanityKey.sanity_project_id,
+    dataset: sanityKey.sanity_dataset,
     useCdn: false,
   });
 
@@ -96,16 +96,25 @@ const Blogs = ({ blog }) => {
 export default Blogs;
 
 export async function getServerSideProps(context) {
+  const sanity_project_id = process.env.PUBLIC_SANITY_PROJECT_ID
+  const sanity_dataset = process.env.PUBLIC_SANITY_DATASET
+
   const client = createClient({
-    projectId: "4jggrkm3",
-    dataset: "production",
+    projectId: sanity_project_id,
+    dataset: sanity_dataset,
     useCdn: false,
   });
+
   const query = `*[_type == "blog"] | order(_createdAt desc)`;
   const blog = await client.fetch(query);
+  
   return {
     props: {
       blog,
+      sanityKey:{
+        sanity_project_id,
+        sanity_dataset
+      }
     },
   };
 }

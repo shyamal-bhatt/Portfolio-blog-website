@@ -18,9 +18,9 @@ import getYouTubeID from "get-youtube-id";
 import { PortableText as PortableTextReact } from "@portabletext/react";
 import { getImageDimensions } from "@sanity/asset-utils";
 
-const myConfiguredSanityClient = createClient({
-  projectId: "4jggrkm3",
-  dataset: "production",
+const myConfiguredSanityClient = ({sanityKey}) => createClient({
+  projectId: sanityKey.sanity_project_id,
+  dataset: sanityKey.sanity_dataset,
   useCdn: false,
 });
 const builder = imageUrlBuilder(myConfiguredSanityClient);
@@ -84,10 +84,10 @@ const myPortableTextComponents = {
   },
 };
 
-const Post = ({ blog, profile, social }) => {
+const Post = ({ blog, profile, social, sanityKey }) => {
   const myConfiguredSanityClient = createClient({
-    projectId: "4jggrkm3",
-    dataset: "production",
+    projectId: sanityKey.sanity_project_id,
+    dataset: sanityKey.sanity_dataset,
     useCdn: false,
   });
   const builder = imageUrlBuilder(myConfiguredSanityClient);
@@ -248,8 +248,8 @@ const Post = ({ blog, profile, social }) => {
                       <PortableText
                         // Pass in block content straight from Sanity.io
                         content={profile.desc}
-                        projectId="4jggrkm3"
-                        dataset="production"
+                        projectId= {sanityKey.sanity_project_id}
+                          dataset = {sanityKey.sanity_dataset}
                         // Optionally override marks, decorators, blocks, etc. in a flat
                         // structure without doing any gymnastics
                         serializers={{
@@ -291,10 +291,12 @@ const Post = ({ blog, profile, social }) => {
 export default Post;
 
 export async function getServerSideProps(context) {
+  const sanity_project_id = process.env.PUBLIC_SANITY_PROJECT_ID
+  const sanity_dataset = process.env.PUBLIC_SANITY_DATASET
   const { slug } = context.query;
   const client = createClient({
-    projectId: "4jggrkm3",
-    dataset: "production",
+    projectId: sanity_project_id,
+    dataset: sanity_dataset,
     useCdn: false,
   });
 
@@ -311,6 +313,11 @@ export async function getServerSideProps(context) {
       blog,
       profile,
       social,
-    },
+      
+      sanityKey:{
+        sanity_project_id,
+        sanity_dataset
+      }
+    },  
   };
 }

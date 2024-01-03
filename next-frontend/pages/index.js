@@ -23,10 +23,13 @@ import emailjs from "@emailjs/browser";
 import { createClient } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
 
-export default function Home({ blog, profile, social, skills, project }) {
+
+
+export default function Home({ blog, profile, social, skills, project, emailKeys, sanityKey }) {
+
   const myConfiguredSanityClient = createClient({
-    projectId: "4jggrkm3",
-    dataset: "production",
+    projectId: sanityKey.sanity_project_id,
+    dataset: sanityKey.sanity_dataset,
     useCdn: false,
   });
   const builder = imageUrlBuilder(myConfiguredSanityClient);
@@ -38,10 +41,10 @@ export default function Home({ blog, profile, social, skills, project }) {
 
     emailjs
       .sendForm(
-        "service_liuhnys",
-        "template_0dtw7cb",
+        emailKeys.serviceId,
+        emailKeys.templateId,
         form.current,
-        "ObwCKoPpDDfr5ocLJ"
+        emailKeys.userKey
       )
       .then(
         (result) => {
@@ -235,8 +238,8 @@ export default function Home({ blog, profile, social, skills, project }) {
                 <div className="pt-6 font-body leading-relaxed text-grey-20">
                   <PortableText
                     content={profile.desc}
-                    projectId="4jggrkm3"
-                    dataset="production"
+                    projectId= {sanityKey.sanity_project_id}
+                    dataset = {sanityKey.sanity_dataset}
                   />
                 </div>
                 <div className="flex flex-col justify-center pt-6 sm:flex-row lg:justify-start">
@@ -317,8 +320,8 @@ export default function Home({ blog, profile, social, skills, project }) {
                       <div className="my-6 text-lg text-gray-700 leading-relaxed">
                         <PortableText
                           content={item.project_desc}
-                          projectId="4jggrkm3"
-                          dataset="production"
+                          projectId= {sanityKey.sanity_project_id}
+                          dataset = {sanityKey.sanity_dataset}
                         />
                       </div>
                       <Link href={item.project_link}>
@@ -457,7 +460,7 @@ export default function Home({ blog, profile, social, skills, project }) {
                   </p>
                 </div>
                 <p className="pt-2 text-left font-body font-bold text-primary lg:text-lg">
-                  shyamalbhatt22@gmail.com
+                {profile.email}
                 </p>
               </div>
               <div className="w-full border-l-2 border-t-0 border-r-2 border-b-2 border-grey-60 px-6 py-6 sm:py-8 lg:w-1/3 lg:border-l-0 lg:border-t-2">
@@ -468,7 +471,7 @@ export default function Home({ blog, profile, social, skills, project }) {
                   </p>
                 </div>
                 <p className="pt-2 text-left font-body font-bold text-primary lg:text-lg">
-                  Mumbai, Maharashtra
+                {profile.location}
                 </p>
               </div>
             </div>
@@ -510,10 +513,19 @@ export default function Home({ blog, profile, social, skills, project }) {
   );
 }
 
+
 export async function getServerSideProps(context) {
+  
+  const serviceId = process.env.EMAILJS_SERVICE_ID;
+  const templateId = process.env.EMAILJS_TEMPLATE_ID;
+  const userKey = process.env.EMAILJS_PUBLIC_USER_KEY;
+  
+  const sanity_project_id = process.env.PUBLIC_SANITY_PROJECT_ID
+  const sanity_dataset = process.env.PUBLIC_SANITY_DATASET
+
   const client = createClient({
-    projectId: "4jggrkm3",
-    dataset: "production",
+    projectId: sanity_project_id,
+    dataset: sanity_dataset,
     useCdn: false,
   });
 
@@ -539,6 +551,16 @@ export async function getServerSideProps(context) {
       social,
       skills,
       project,
+
+      emailKeys:{
+        serviceId,
+        templateId,
+        userKey, 
+      },
+      sanityKey:{
+        sanity_project_id,
+        sanity_dataset
+      }
     },
   };
 }

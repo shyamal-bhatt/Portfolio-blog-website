@@ -7,7 +7,7 @@ import PortableText from "react-portable-text";
 import Script from "next/script";
 import { createClient } from "next-sanity";
 
-const Projects = ({ project }) => {
+const Projects = ({ project, sanityKey }) => {
   return (
     <>
       <Head>
@@ -61,8 +61,8 @@ const Projects = ({ project }) => {
                       <div className="my-6 text-lg text-gray-700 leading-relaxed">
                         <PortableText
                           content={item.project_desc}
-                          projectId="4jggrkm3"
-                          dataset="production"
+                          projectId= {sanityKey.sanity_project_id}
+                          dataset = {sanityKey.sanity_dataset}
                         />
                       </div>
                       <Link href={item.project_link}>
@@ -96,9 +96,12 @@ const Projects = ({ project }) => {
 export default Projects;
 
 export async function getServerSideProps(context) {
+  const sanity_project_id = process.env.PUBLIC_SANITY_PROJECT_ID
+  const sanity_dataset = process.env.PUBLIC_SANITY_DATASET
+
   const client = createClient({
-    projectId: "4jggrkm3",
-    dataset: "production",
+    projectId: sanity_project_id,
+    dataset: sanity_dataset,
     useCdn: false,
   });
 
@@ -108,6 +111,10 @@ export async function getServerSideProps(context) {
   return {
     props: {
       project,
+      sanityKey:{
+        sanity_project_id,
+        sanity_dataset
+      }
     },
   };
 }
