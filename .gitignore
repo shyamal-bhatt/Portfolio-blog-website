@@ -28,7 +28,7 @@ next-frontend/yarn-error.log*
 next-frontend/.pnpm-debug.log*
 
 # local env files
-next-frontend/.env*.local
+next-frontend/.env
 
 # vercel
 next-frontend/.vercel
@@ -39,6 +39,8 @@ next-frontend/next-env.d.ts
 
 
 ################## gitignore Sanity-backend #################
+sanity-backend
+
 sanity-backend/.npmignore
 
 # Logs
